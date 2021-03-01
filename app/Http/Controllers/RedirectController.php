@@ -9,7 +9,7 @@ class RedirectController extends Controller
 {
     public function redirect(){
         if(user()->is_admin === "ADM"){
-            return redirect()->route('admin.dashboard');
+            // return redirect()->route('admin.dashboard');
         }
         elseif(session()->has('cart_redirect')){
             // echo "<script>open('$url','_self')</script>";

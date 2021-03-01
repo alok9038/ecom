@@ -17,10 +17,13 @@ class AdminAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        if(session()->has('utype')){
-            // return $next($request);
-        }else{
-            // session()->flush();
+        if(user()->is_admin === "ADM"){
+            
+        }
+        elseif(user()->is_admin === "USR"){
+            return redirect()->route('login');
+        }
+        else{
             return redirect()->route('login');
         }
         return $next($request);
