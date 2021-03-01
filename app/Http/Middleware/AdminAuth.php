@@ -17,8 +17,8 @@ class AdminAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        if(session('utype') === "ADM"){
-            return $next($request);
+        if(session()->has('utype')){
+            // return $next($request);
         }else{
             session()->flush();
             return redirect()->route('login');
