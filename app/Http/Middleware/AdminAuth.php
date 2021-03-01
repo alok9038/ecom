@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Middleware;
-
+use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
 use Auth;
@@ -29,6 +29,7 @@ class AdminAuth
 
         if(session()->has('ADM')){
             return $next($request);
+            return redirect(RouteServiceProvider::ADMIN_HOME);
         }else{
             session()->flush();
             return redirect()->route('login');
