@@ -20,7 +20,7 @@ class AdminAuth
         if(session()->has('utype')){
             // return $next($request);
         }else{
-            session()->flush();
+            // session()->flush();
             return redirect()->route('login');
         }
         return $next($request);
