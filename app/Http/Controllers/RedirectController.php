@@ -8,13 +8,15 @@ use Illuminate\Http\Request;
 class RedirectController extends Controller
 {
     public function redirect(){
-        
-        if(session()->has('cart_redirect')){
+        if(user()->is_admin === "ADM"){
+            return redirect()->route('admin.dashboard');
+        }
+        elseif(session()->has('cart_redirect')){
             // echo "<script>open('$url','_self')</script>";
             session()->forget('cart_redirect');
             return redirect()->route('cart');
         }
-        if(session()->has('redirect')){
+        elseif(session()->has('redirect')){
             $url = session()->get('redirect');
             echo "<script>open('$url','_self')</script>";
             session()->forget('redirect');

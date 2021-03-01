@@ -1,5 +1,6 @@
 @extends('layouts.adminbase')
 @section('content')
+{{ user()->is_admin }}
     <div class="container text-light px-3">
         <div class="card border-0 shadow-sm bg-theme">
             <div class="card-body">

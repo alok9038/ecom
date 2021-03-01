@@ -78,7 +78,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/login', [AdminController::class,"login"])->name('admin.login.page');
     Route::post('/login', [AdminController::class,"login"])->name('admin.login');
     
-    Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
+    Route::group(['middleware'=> 'admin_auth'],function(){
         
 
         Route::get('/', [AdminController::class,"index"])->name('admin.dashboard');
