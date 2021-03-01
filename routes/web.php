@@ -14,7 +14,7 @@ use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\SettingController;
 
 // for homepage //
-Route::get('/redirect', [RedirectController::class,"redirect"]);
+Route::get('/redirect', [RedirectController::class,"redirect"])->name('redirect');
 
 Route::get('/track', [ShipController::class,"track"]);
 Route::get('/token', [ShipController::class,"generate_token"]);
@@ -78,7 +78,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/login', [AdminController::class,"login"])->name('admin.login.page');
     Route::post('/login', [AdminController::class,"login"])->name('admin.login');
     
-    Route::group(['middleware'=> 'admin_auth'],function(){
+    Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
         
 
         Route::get('/', [AdminController::class,"index"])->name('admin.dashboard');

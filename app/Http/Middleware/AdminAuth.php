@@ -17,18 +17,12 @@ class AdminAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        // if(session('is_admin') === 'ADM'){
-        //     return $next($request);
-        // }
-        // else{
-        //     session()->flush();
-        //     return redirect()->route('login');
-        // }
-        if(user()->is_admin === "ADM"){
-            // return redirect()->route('admin.dashboard');
+        if(session('utype') === "ADM"){
+            return $next($request);
         }else{
+            session()->flush();
             return redirect()->route('login');
         }
-            return $next($request);
+        return $next($request);
         }
      }
