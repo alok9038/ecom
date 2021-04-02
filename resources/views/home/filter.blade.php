@@ -9,7 +9,7 @@
         <div class="row row-cols-1 row-cols-lg-4 row-cols-md-3">
             @foreach ($products as $product)
                 <div class="col">
-                    <div class="card border-0 round-15 mat-shadow-sm post-item" >
+                    <div class="card border-0 round-15 product-card mx-auto mat-shadow-sm post-item" >
                         <img src="{{ asset('product/'.$product->cover_image) }}" style="height: 266px; object-fit:fill; object-position:center;" alt="" class="img-fluid card-img-top round-lt-rt-15">
                         <div class="card-body">
                             <a href="{{ route('home.product',['name'=>$product->slug]) }}" class="stretched-link text-decoration-none text-dark" title="{{ $product->title }}"><h6 class="text-truncate">{{ $product->title }}</h6></a>

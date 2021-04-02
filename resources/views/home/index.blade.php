@@ -58,7 +58,7 @@
                     @foreach ($category as $cat)
                     <div class="slide py-2 category-slider" style="height: auto; outline:none;">
                         <div class="card bg-transparent border-0">
-                            <div class="card-body cat p-1 rounded-circle d-flex justify-content-center mat-shadow-sm category-card" style="background-color: {{ $cat->color }}">
+                            <div class="card-body cat rounded-circle d-flex justify-content-center mat-shadow-sm category-card" style="background-color: {{ $cat->color }}; padding:2px;">
                                 <img src="{{ asset('category/'.$cat->image) }}" class="category-img card-img-top img-fluid">
                             </div>
                             <div class="card-footer bg-transparent border-0">

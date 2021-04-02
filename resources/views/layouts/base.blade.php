@@ -39,7 +39,7 @@
                 <ul class="navbar-nav d-flex d-lg-none">
                     <li class="nav-item"><a href="#" id="sidebarCollapse" class="nav-link"><i class="fa fa-align-left text-light"></i></a></li>
                 </ul>
-                <a href="#" class="navbar-brand mx-auto mx-lg-0 mx-md-0">Kumar Studio</a>
+                <a href="{{ route('homepage') }}" class="navbar-brand mx-auto mx-lg-0 mx-md-0">Kumar Studio</a>
                 <form action="" class="mx-auto d-lg-flex d-none">
                     <div class="d-flex bg-white round-15 p-1">
                         <input type="search" size="50" placeholder="search gifts here .. " class="form-control border-0 shadow-none round-15">
