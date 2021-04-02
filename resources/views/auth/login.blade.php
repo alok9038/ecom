@@ -82,6 +82,7 @@
                                 <a href="" class="small mt-3">forgot password?</a>
                                 <button class="btn btn-dark ms-auto px-5">Login</button>
                             </div>
+                            <a href="{{ route('register') }}" class="float-end text-theme">i'm new</a>
                         </form>
                     </div>
                 </div>

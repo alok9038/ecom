@@ -14,7 +14,7 @@
             @endphp
             @foreach ($categories as $cat)
             <li class="">
-                <a href="{{ route('homepage') }}">{{ $cat->cat_title }}</a>
+                <a href="{{ route('filter',['name'=>$cat->slug]) }}">{{ $cat->cat_title }}</a>
             </li>
             @endforeach
             @if(!Auth::check())
