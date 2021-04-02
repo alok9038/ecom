@@ -26,8 +26,15 @@
     @yield('css')
 </head>
 <body>
+    <style>
+        @media only screen and ( max-width: 992px) {
+            .main-nav{
+                z-index: 3!important;
+            }
+        }
+    </style>
     @include('include.sidebar')
-        <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color:#ee4054;z-index:1!important;">
+        <nav class="navbar navbar-expand-lg navbar-dark sticky-top main-nav" style="background-color:#ee4054;">
             <div class="container">
                 <ul class="navbar-nav d-flex d-lg-none">
                     <li class="nav-item"><a href="#" id="sidebarCollapse" class="nav-link"><i class="fa fa-align-left text-light"></i></a></li>
@@ -128,7 +135,7 @@
       </style>
     <div class="overlay"></div>
 
-    <div class="container-fluid py-4 bg-white fixed-bottom mobile-footer-menu">
+    <div class="container-fluid py-4 bg-white fixed-bottom mobile-footer-menu d-lg-none d-flex">
         <div class="container">
             <div class="row">
                 <div class="col d-flex justify-content-center"><a href="{{ route('homepage') }}" class="text-decoration-none"><i class="fa fa-home" style="font-size: 18px!important"></i></div></a>

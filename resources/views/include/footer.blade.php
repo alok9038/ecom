@@ -1,6 +1,6 @@
 
 <!-- Site footer -->
-<footer class="site-footer px-3 mb-5">
+<footer class="site-footer px-3 mb-5 mb-lg-0 ">
   <div class="container-fluid px-3">
     <div class="row">
       <div class="col-sm-12 col-lg-5 col-md-12">

@@ -17,16 +17,14 @@
                 <a href="{{ route('homepage') }}">{{ $cat->cat_title }}</a>
             </li>
             @endforeach
-            <hr>
             @if(!Auth::check())
-            <div class="px-4 mb-2">
-                <a href="{{ route('login') }}" class="btn btn-success btn-block">Login</a>
-                 
-            </div>
-            <div class="px-4 mb-2">
-                <a href="{{ route('register') }}" class="btn btn-info btn-block">Register</a>
-            </div>
-            
+            <hr>
+            <li class="">
+                <a href="{{ route('login') }}">Login</a>
+            </li>
+            <li class="">
+                <a href="{{ route('register') }}">Register</a>
+            </li>
             @endif
         </ul>
     </nav>
