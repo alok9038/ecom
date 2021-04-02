@@ -74,6 +74,7 @@
         {{-- category section end --}}
     
         {{-- latest collection --}}
+        @if(count($products) > 0)
         <div class="container-fluid pt-4 pb-lg-5 bg-white">
             <div class="head text-center"><h4 class="fw-light text-center">Latest Collections <br> <img src="{{ asset('star.jpg') }}" alt="" class="img-fluid" style="width: 360px;"></h4></div>
             <section class="products w-100 slider mt-3 mb-5" style="height: 330px;">      
@@ -101,6 +102,7 @@
                 @endforeach
             </section>
         </div>
+        @endif
     </div>
     {{-- latest collection end --}}
     @php
