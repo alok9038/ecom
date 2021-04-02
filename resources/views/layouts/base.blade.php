@@ -135,7 +135,7 @@
       </style>
     <div class="overlay"></div>
 
-    <div class="container-fluid py-4 bg-white fixed-bottom mobile-footer-menu d-lg-none d-flex">
+    <div class="container-fluid py-3 bg-white fixed-bottom mobile-footer-menu d-lg-none d-flex">
         <div class="container">
             <div class="row">
                 <div class="col d-flex justify-content-center"><a href="{{ route('homepage') }}" class="text-decoration-none"><i class="fa fa-home" style="font-size: 18px!important"></i></div></a>

@@ -38,9 +38,9 @@
     color: #ee4054!important;
 }
 .mobile-footer-menu{
-    -webkit-box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.75);
-    -moz-box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.75);
-    box-shadow: 0px -0.1rem 0.5rem rgba(50, 50, 50, 0.781);
+    -webkit-box-shadow: 0px -4px 3px rgba(0,0,0,0.23);
+    -moz-box-shadow: 0px -4px 3px rgba(0,0,0,0.23);
+    box-shadow: 0px -0.1rem 0.5rem rgba(0,0,0,0.23);
 }
 .slick-next, .slick-prev{
     height: 45px;
