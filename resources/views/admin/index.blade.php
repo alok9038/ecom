@@ -1,24 +1,33 @@
 @extends('layouts.adminbase')
 @section('content')
+@parent
 {{-- {{ session()->get('utype') }} --}}
-    <div class="container text-light px-3">
-        <div class="card border-0 shadow-sm bg-theme">
-            <div class="card-body">
-                <h5 class="h3 fw-light">Welcome To Kumar Studio Admin Pannel.</h5>
-                <p class="text-white">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum atque laboriosam numquam, accusantium dolor cumque ipsum saepe esse facere, iste illum eveniet quidem voluptates possimus debitis. Labore earum corrupti animi.</p>
-            </div>
-        </div>
-    </div>
-    <div class="container mt-4">
+    <style>
+        .col-progressbar{
+            width: 4%;
+            margin-right: auto;
+            margin-left: auto;
+            background-color: black;
+            border-radius: 25px;
+            bottom: 0;
+            display: block;
+            position: absolute;
+            width: 4%;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        .p-row{
+            height: 400px;
+            
+        }
+        .col-progressbar:nth-child(1){
+            height: 25%;
+            bottom: 0!important;
+            
+        }
+    </style>
+    <div class="container px-5 pt-1" style="margin-top: -50px">
         <div class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-2">
-            <div class="col mb-4">
-                <div class="card border-0 bg-white shadow">
-                    <div class="card-body">
-                        <p class="text-muted">Total Products</p> <span class="badge bg-success rounded-3 float-end p-2"> <i class="fa fa-eye"></i></span>
-                        <h5>{{ $products }}</h5>
-                    </div>
-                </div>
-            </div>
             <div class="col mb-4">
                 <div class="card border-0 bg-white shadow">
                     <div class="card-body">
@@ -38,12 +47,20 @@
             <div class="col mb-4">
                 <div class="card border-0 bg-white shadow">
                     <div class="card-body">
-                        <p class="text-muted">Total Orders</p> <span class="badge bg-warning rounded-3 float-end p-2"> <i class="fa fa-shopping-bag"></i></span>
+                        <p class="text-muted">Today's Revenue</p> <span class="badge bg-warning rounded-3 float-end p-2"> <i class="fa fa-dollar"></i></span>
                         <h5>{{ $orders }}</h5>
                     </div>
                 </div>
             </div>
             <div class="col mb-4">
+                <div class="card border-0 bg-white shadow">
+                    <div class="card-body">
+                        <p class="text-muted">Total Orders</p> <span class="badge bg-warning rounded-3 float-end p-2"> <i class="fa fa-shopping-bag"></i></span>
+                        <h5>{{ $orders }}</h5>
+                    </div>
+                </div>
+            </div>
+            {{-- <div class="col mb-4">
                 <div class="card border-0 bg-white shadow">
                     <div class="card-body">
                         <p class="text-muted">Cancelled Orders</p> <span class="badge bg-danger rounded-3 float-end p-2"> <i class="fa fa-shopping-bag"></i></span>
@@ -74,6 +91,28 @@
                         <h5>{{ $coupon }}</h5>
                     </div>
                 </div>
+            </div> --}}
+            
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="card border-0">
+                        <div class="card-body">
+                            <h6 class="text-muted fw-light">Performance</h6>
+                            <hr>
+                            <div class="row p-row g-2">
+                                <div class="col-progressbar ">h</div>
+                                <div class="col-progressbar"></div>
+                                <div class="col-progressbar"></div>
+                                <div class="col-progressbar"></div>
+                                <div class="col-progressbar"></div>
+                                <div class="col-progressbar"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7"></div>
             </div>
         </div>
     </div>

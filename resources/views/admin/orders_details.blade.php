@@ -59,12 +59,22 @@
                             <tr>
                                 <td class="pt-4"><strong class="me-3">Address :</strong>{{ $order->orders->add->street }} ,<br>{{$order->orders->add->city }} - {{ $order->orders->add->pincode .' , '. $order->orders->add->state }}</td>
                                 @if ($order->status == 2)
-                                    <td class="pt-4" colspan="4">
-                                        <form action="{{ route('check_requirement',['id'=>$order->ship_order_id]) }}" method="post">
+                                    <td colspan="3" class="pt-4">
+                                        <a href="{{ $print->invoice_url }}" target="_blank" class="btn btn-info float-end"><i class="fa fa-print"></i> Print Invoice</a>
+                                    </td>
+                                    <td class="pt-4" colspan="">
+                                        <form action="{{ route('cancel_order',['id'=>$order->ship_order_id]) }}" method="post">
                                             @csrf
-                                            <button class="btn btn-danger float-end" type="submit" name="cancel_order"><i class="fa fa-trash"></i> Cancel Order</button>
+                                            <button class="btn btn-danger " type="submit" name="cancel_order"><i class="fa fa-trash"></i> Cancel Order</button>
                                         </form>
                                     </td> 
+                                    <td class="pt-4" colspan="">
+                                        <form action="{{ route('generate_awb') }}" method="post">
+                                            @csrf
+                                            <button class="btn btn-warning " type="submit" name="cancel_order"><i class="fa fa-box"></i> Generate AWB</button>
+                                        </form>
+                                    </td> 
+
                                 @endif
                             </tr>
                             <tr>
@@ -83,7 +93,7 @@
                                     @endif</td>
                             </tr>
                         </table>
-                        <form action="{{ route('check_requirement',['id'=>$order->id]) }}" method="post">
+                        <form action="{{ route('create_order',['id'=>$order->id]) }}" method="post">
                             @csrf
                             <div class="mb-3 pe-4">
                                 <select name="update_order_status" required onchange="select_status()" id="update_order_status" class="form-control">

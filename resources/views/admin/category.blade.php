@@ -1,6 +1,7 @@
 @extends('layouts.adminbase')
 @section('content')
     <div class="container">
+        @include('sweetalert::alert')
         <div class="row">
             <div class="col-lg-4 col-md-4">
                 <div class="card shadow-sm">
@@ -65,7 +66,8 @@
                                     <td>{{ $category->description }}</td>
                                     <td class="d-flex">
                                         <a href="" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-danger rounded-0 btn-sm"><i class="fa fa-trash"></i></a>
-                                        <a href="" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-info rounded-0 btn-sm"><i class="fa fa-edit"></i></a>
+                                        <a href="" data-toggle="modal" type="button" data-id="{{$category->id}}"  class="btn button btn-info rounded-0 btn-sm"><i class="fa fa-edit"></i></a>
+                                        
                                     </td>
                                 </tr>
                             @endforeach
@@ -97,4 +99,5 @@
           </div>
         </div>
       </div>
+      
 @endsection

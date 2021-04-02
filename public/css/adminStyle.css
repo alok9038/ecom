@@ -11,6 +11,9 @@ body {
 .bg-theme{
   background-color: #263238!important;
 }
+.bg-theme-2{
+    background: #37474f!important;
+}
 
 p {
     font-family: 'Poppins', sans-serif;
@@ -76,8 +79,8 @@ a:focus {
 }
 
 #sidebar .sidebar-header {
-    padding: 20px;
-    background: #37474f;
+    padding: 10px;
+    /* background: #37474f; */
 }
 
 #sidebar ul.components {

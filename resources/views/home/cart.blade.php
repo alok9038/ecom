@@ -119,7 +119,7 @@
                                 </h6>
                             @endif
                         
-                        <a href="{{ route('checkout') }}" class="btn bg-green text-white rounded-0 w-100 shadow mt-4">Checkout</a>
+                        <a href="{{ route('checkout') }}" class="btn btn-success text-white rounded-0 w-100 mat-shadow-sm mt-4">Checkout</a>
                         <a href="{{ route('homepage') }}" class="text-decoration-none text-info small float-end mt-3">Continue shopping.</a>
                     </div>            
                 </div>

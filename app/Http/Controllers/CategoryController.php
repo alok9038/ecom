@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Alert;
 
 class CategoryController extends Controller
 {
@@ -32,14 +33,28 @@ class CategoryController extends Controller
         $category->image = $filename;
         $category->slug = $slug;
         $category->save();
-
+        Alert::toast('Category Successfully Inserted!', 'success');
         return redirect()->back();
 
     }
 
     public function drop_category($id){
-        Category::where('id',$id)->delete();
+        $delete = Category::where('id',$id)->delete();
+        if ($delete == 1) {
+            $success = true;
+            $message = "User deleted successfully";
+        } else {
+            $success = true;
+            $message = "User not found";
+        }
+        //  Return response
+        return response()->json([
+            'success' => $success,
+            'message' => $message,
+        ]);
+        Alert::toast('Category Successfully Removed!', 'Toast Type');
         return redirect()->back();
+        
     }
 
     public function category_edit(Request $request, $id){

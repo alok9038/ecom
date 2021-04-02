@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('coupon')->constrained('coupons')->nullable();
-            $table->foreignId('address')->constrained('address')->nullable();
+            $table->foreignId('address')->constrained('addresses')->nullable();
             $table->boolean('ordered')->default(false);
             $table->integer('status')->nullable();
             $table->timestamps();

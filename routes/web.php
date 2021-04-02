@@ -12,6 +12,8 @@ use App\Http\Controllers\ShipController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\ShiprocketController;
+use App\Http\Controllers\PaytmController;
 
 // for homepage //
 Route::get('/redirect', [RedirectController::class,"redirect"])->name('redirect');
@@ -56,20 +58,6 @@ Route::get('/coupon/{id}',[CartController::class,"coupon"])->name('coupon.remove
 // for users
 
 
-
-Route::prefix('user')->group(function () {
-    Route::get('/login',[UserController::class,"login"])->name('user.login.view');
-    Route::post('/login',[UserController::class,"login"])->name('user.login');
-
-    Route::get('/register',[UserController::class,"register"])->name('user.register.view');
-    Route::post('/register',[UserController::class,"register"])->name('user.register');
-
-    
-
-});
-
-
-
 // For admin Pannel //
 
 
@@ -77,6 +65,8 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/login', [AdminController::class,"login"])->name('admin.login.page');
     Route::post('/login', [AdminController::class,"login"])->name('admin.login');
+
+    Route::get('/download', [ShipController::class,"download_invoice"]);
     
     Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
         
@@ -108,22 +98,38 @@ Route::prefix('admin')->group(function () {
         Route::post('/coupon/status/{id}',[CouponController::class,"coupon_status"])->name('coupon.status');
 
         Route::get('/orders',[OrderController::class,"orders"])->name('orders.view');
+        Route::get('/placed_orders',[OrderController::class,"placed_orders"])->name('orders.placed');
         Route::get('/order_detail/{id}',[OrderController::class,"order_details"])->name('orders.details.view');
 
+        // Settings
+        Route::get('/settings',[SettingController::class,"site_settings"])->name('admin.settings');
+        Route::post('/site_setting',[SettingController::class,"site_settings"])->name('site.settings.update');
 
         // shiprocket api 
         Route::post('/check/{id}',[ShipController::class,"check_requirement"])->name('check_requirement');
         Route::post('/cancel/{id}',[ShipController::class,"cancel_order"])->name('cancel_order');
 
-        // setting 
-        Route::get('/settings',[SettingController::class,"site_settings"])->name('admin.settings');
-        Route::post('/site_setting',[SettingController::class,"site_settings"])->name('site.settings.update');
+        // ShipRocket API 
+        Route::post('/create/{id}',[ShiprocketController::class,"create"])->name('create_order');
+        Route::post('/cancel/{id}',[ShiprocketController::class,"cancel_order"])->name('cancel_order');
+        Route::post('/generate_awb',[ShiprocketController::class,"generate_awb"])->name('generate_awb');
+        Route::get('/track',[ShiprocketController::class,"track"])->name('track');
+        Route::get('/check',[ShiprocketController::class,"check"])->name('check');
 
 
     });   
+
+    
 });
 
+    Route::get('/initiate',[PaytmController::class,"initiate"])->name('initiate.payment');
+    Route::post('/payment',[PaytmController::class,"pay"])->name('make.payment');
+    Route::post('/payment/status',[PaytmController::class,"paymentCallback"])->name('status');
 
+
+    Route::get('payment/{id}',[PaytmController::Class, 'pay'])->name('paytm.payment');
+    Route::post('paytm-callback',[PaytmController::Class, 'paytmcallback'])->name('paytm.callback');
+    Route::get('payment',[PaytmController::Class, 'paytmPurchase'])->name('paytm.purchase');
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');

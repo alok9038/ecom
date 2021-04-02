@@ -11,14 +11,14 @@
             <div class="col-lg-8 d-flex">
                 <img src="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/orderPlacedV2_cb4f64.png" class="img-fluid" style="height: 80px; " alt="">
                 <div class=" mt-4 ms-3">
-                    <h4>Order placed for ₹{{ $order[0]->items->discount_price + $order[0]->items->discount_price  }}!</h4>
+                    <h4>Order placed for ₹ <?php $sum= 0;   foreach($order as $i):   $sum+= $i->items->discount_price*$i->qty;  endforeach;  ?>{{ $sum }}!</h4>
                     <p class="small">Your {{ count($order) }} item will be delivered as soon as possible.</p>
                 </div>
             </div>
             <div class="col-lg-4">
                 <h6>Why call? Just click!</h6>
                 <p class="small">Easily track all your Flipkart orders!</p>
-                <a href="" class="btn btn-info px-3">Go to My Orders</a>
+                <a href="{{ route('my.orders') }}" class="btn btn-info px-3">Go to My Orders</a>
             </div>
         </div>
 

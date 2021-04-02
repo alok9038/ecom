@@ -3,7 +3,6 @@
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
         </x-slot>
-
         <x-jet-validation-errors class="mb-4" />
 
         <form method="POST" action="{{ route('register') }}">
@@ -12,6 +11,10 @@
             <div>
                 <x-jet-label for="name" value="{{ __('Name') }}" />
                 <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            </div>
+            <div class="mt-4">
+                <x-jet-label for="contact" value="{{ __('Phone') }}" />
+                <x-jet-input id="contact" class="block mt-1 w-full" type="text" name="contact" :value="old('contact')" required autofocus autocomplete="contact" />
             </div>
 
             <div class="mt-4">

@@ -1,0 +1,120 @@
+*{
+    font-family: Raleway;
+}
+.mat-shadow{
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+.mat-shadow-sm{
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.mat-shadow-2{
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+.mat-shadow-3{
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+.round-10{
+    border-radius: 10px;
+}
+.round-15{
+    border-radius: 15px;
+}
+.round-20{
+    border-radius: 20px;
+}
+.round-25{
+    border-radius: 25px;
+}
+.round-lt-rt{
+    border-radius: 10px 10px 0 0 ;
+}
+.round-lt-rt-15{
+    border-radius: 15px 15px 0 0 ;
+}
+.bg-theme{
+    background-color: #ee4054!important;
+}
+.text-theme{
+    color: #ee4054!important;
+}
+.mobile-footer-menu{
+    -webkit-box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.75);
+    box-shadow: 0px -0.1rem 0.5rem rgba(50, 50, 50, 0.781);
+}
+.slick-next, .slick-prev{
+    height: 45px;
+    width: 45px;
+    background-color: white;
+    cursor:pointer;
+    border-radius: 50%;
+    z-index: 3;
+    font-size: 14px;
+    display: flex!important;
+    justify-content: center!important;
+    align-items: center!important;
+    transition: .3s linear;
+}
+.slick-next:hover, .slick-prev:hover{
+    background-color: whitesmoke;
+}
+.product-next, .product-prev{
+    background-color: rgba(255, 255, 255, 0.336)!important;
+}
+.product-next:hover, .product-prev:hover{
+    background-color: white!important;
+}
+.top-offer{
+    height: 320px!important;
+}
+.nav-link{
+    font-family: Raleway;
+    font-weight: 550;
+}
+.slick-next i{
+    text-align: center!important;
+    margin-left: auto;
+    margin-right: auto;
+    color: black;
+}
+.slick-prev i{
+    text-align: center!important;
+    margin-left: auto;
+    margin-right: auto;
+    color: black;
+}
+.slide-img{
+    height: 320px!important;
+    object-fit:fill;
+}
+@media only screen and ( max-width: 720px) {
+    .slide-img{
+        height: 200px!important;
+        object-fit:fill;
+    }
+  }
+  @media only screen and ( max-width: 980px) {
+    .slide-img{
+        height: 250px!important;
+        object-fit:fill;
+    }
+    .slick-next, .slick-prev{
+        display: none!important;
+    }
+  }
+  @media only screen and ( max-width: 520px) {
+    .slide-img{
+        height: 130px!important;
+        object-fit:fill;
+    }
+    .slick-next, .slick-prev{
+        display: none!important;
+    }
+    .top-offer{
+        height: auto!important;
+    }
+    .category-img{
+        width: auto!important;
+        height: auto!important;
+    }
+  }

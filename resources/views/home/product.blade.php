@@ -24,7 +24,7 @@
                             $images = explode(",",$product->images);
                         @endphp
                         @foreach ($images as $image)
-                        <div class="slider-for__item p-0" data-src="{{ asset('product/'.$image) }}">
+                        <div class="slider-for__item p-0" style="outline: none!important" data-src="{{ asset('product/'.$image) }}">
                             <img src="{{ asset('product/'.$image) }}" class="img-fluid border" style="height:400px;" alt="" />
                           </div>
                         @endforeach
@@ -33,9 +33,9 @@
 
                     </div>
                   
-                    <div class="slider-nav px-3">
+                    <div class="slider-nav px-3" style="outline: none!important">
                         @foreach ($images as $image)
-                      <div class="slider-nav__item m-1">
+                      <div class="slider-nav__item m-1" style="outline: none!important">
                         <img src="{{ asset('product/'.$image) }}" class="border img-fluid h-100" alt="" />
                       </div>
                       @endforeach
@@ -45,8 +45,15 @@
             <div class="col-lg-7 px-3">
                 <h1 class="h4">{{ $product->title }}</h1> 
                 <p class="small">Soft toys</p> 
-                <p class="h5 text-danger">₹. {{ $product->discount_price }}/- <del class="ms-2 text-muted small">₹. {{ $product->price }}/-</del></p>
-                <span class="badge bg-green rounded-0 py-2 mt-3">
+                <span>
+                    <i class="fa fa-star text-warning"></i>
+                    <i class="fa fa-star text-warning"></i>
+                    <i class="fa fa-star text-warning"></i>
+                    <i class="fa fa-star text-warning"></i>
+                    <i class="fa fa-star text-warning"></i> (2 votes)
+                </span>
+                <p class="h5 text-danger mt-3">₹. {{ $product->discount_price }}/- <del class="ms-2 text-muted small">₹. {{ $product->price }}/-</del></p>
+                <span class="badge bg-theme rounded-0 py-2 mt-3">
                     @php
                          $price = $product->price;
                          $discount_price = $product->discount_price;
@@ -75,7 +82,7 @@
                     @auth
                     <form action="{{ route('add.to.cart',['id'=>$product->id]) }}" method="post">
                         @csrf
-                        <button class="btn bg-green rounded-0 shadow-none">Add to cart</button>
+                        <button class="btn bg-success text-white rounded-0 shadow-none">Add to cart</button>
                     </form> 
                     @endauth
                     @guest
@@ -98,10 +105,10 @@
         </div>    
     </div>    
 
-    <div class="container mt-5 px-3" id="details">
-        <div class="card rounded-0" >
-            <div class="card-header rounded-0 ">Product Description</div>
-            <div class="card-body">
+    <div class="container mt-5 px-3" >
+        <div class="card rounded-0" id="details">
+            <div class="card-header rounded-0 " >Product Description</div>
+            <div class="card-body" >
                 <p class="">{{ $product->description }}</p>
             </div>
         </div>        
@@ -126,24 +133,26 @@
         </div>
     </div>
 
+    @section('js')
     <script>
-         // SLICK
-            $('.slider-for').slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            arrows: false,
-            fade: true,
-            asNavFor: '.slider-nav'
-            });
-            $('.slider-nav').slick({
-            slidesToShow: 4,
-            arrows:false,
-            slidesToScroll: 1,
-            asNavFor: '.slider-for',
-            dots: false,
-            focusOnSelect: true
-            });
+        // SLICK
+           $('.slider-for').slick({
+           slidesToShow: 1,
+           slidesToScroll: 1,
+           arrows: false,
+           fade: true,
+           asNavFor: '.slider-nav'
+           });
+           $('.slider-nav').slick({
+           slidesToShow: 4,
+           arrows:false,
+           slidesToScroll: 1,
+           asNavFor: '.slider-for',
+           dots: false,
+           focusOnSelect: true
+           });
 
-            
-    </script>
+           
+   </script>
+    @endsection
 @endsection

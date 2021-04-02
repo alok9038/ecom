@@ -32,13 +32,14 @@ class CartController extends Controller
                     Order_item::where($cond)->update(['qty'=>$qty]);
                 }
                 else{
-                    Order_item::insert([
-                        'ordered' => false,
-                        'user_id' => $user,
-                        'order_id' => $order[0]->id,
-                        'qty' => 1,
-                        'product_id' => $id
-                    ]);
+                    
+                    $order_i = new Order_item;
+                    $order_i->ordered = false;
+                    $order_i->user_id = $user;
+                    $order_i->order_id = $order[0]->id;
+                    $order_i->qty = '1';
+                    $order_i->product_id = $id;
+                    $order_i->save();
                     
                 }
             }
@@ -55,6 +56,7 @@ class CartController extends Controller
                     "ordered"=>false,
                     "user_id"=>$user,
                     "order_id"=>$last_id,
+                    "qty"=>1,
                     'product_id'=>$id
                     ]);
 
@@ -153,8 +155,9 @@ class CartController extends Controller
             Order::where(['ordered'=>false],['user_id'=>$user_id])->update(['address'=>$address_id, 'user_id'=>$user_id, 'ordered'=>true]);
             Order_item::where(['ordered'=>false],['user_id'=>$user_id])->update(['user_id'=>$user_id, 'ordered'=>true]);
             $order = Order::where(['ordered'=>true],['user_id'=>$user_id])->orderBy('updated_at','desc')->first();
-            $order_id =   Crypt::encryptString($order->id);
-            return redirect()->route('order.placed',['id'=>$order_id]);
+            // $order_id =   Crypt::encryptString($order->id);
+            $order_id = $order->id;
+            return redirect()->route('paytm.payment',['id'=>$order_id]);
         }else{
             $req->validate([
                 'name' => 'required',
@@ -205,10 +208,6 @@ class CartController extends Controller
         }
         
 
-    }
-
-    public function login(){
-        return view('user.login');
     }
 
     public function order($id){

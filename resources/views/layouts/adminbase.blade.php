@@ -17,7 +17,7 @@
 
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-
+    @include('sweetalert::alert')
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
@@ -61,6 +61,9 @@
                             <a href="{{ route('orders.view') }}">New Orders</a>
                         </li>
                         <li>
+                            <a href="{{ route('orders.placed') }}">Placed Orders</a>
+                        </li>
+                        <li>
                             <a href="#">Cancled Orders</a>
                         </li>
                     </ul>
@@ -89,18 +92,28 @@
         <!-- Page Content  -->
         <div id="content">
 
-            <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-theme">
+            <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-theme-2" >
                 <div class="container-fluid">
-
                     <button type="button" id="sidebarCollapse" class="btn text-white shadow-none">
                         <i class="fas fa-align-left"></i>
                     </button>
-                    
                 </div>
             </nav>
-            <div class="container">
+            @section('content')
+                <div class="container-fluid bg-theme-2 p-5 border-top border-secondary" style="margin-top:-40px;">
+                    <div class=" text-light">
+                        <div class="card border-0 bg-theme-2">
+                            <div class="card-body">
+                                <h5 class="h3 fw-light">Welcome To Kumar Studio Admin Pannel.</h5>
+                                <p class="text-white">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum atque laboriosam numquam, accusantium dolor cumque ipsum saepe esse facere, iste illum eveniet quidem voluptates possimus debitis. Labore earum corrupti animi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @show
+            {{-- <div class="container">
                 @yield('content')
-            </div>
+            </div> --}}
         </div>
     </div>
 

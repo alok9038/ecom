@@ -63,8 +63,8 @@
                         <form action="{{ route('login') }}" method="post">
                             @csrf
                             <div class="mb-3">
-                                <label for="" class="text-dark">Email or Phone</label>
-                                <input type="email" class="form-control rounded-3 shadow-none border-secondary" name="email" value="{{ old('email') }}" required autofocus >
+                                <label for="contact" class="text-dark">Email or Phone</label>
+                                <input type="contact" class="form-control rounded-3 shadow-none border-secondary" name="email" value="{{ old('contact') }}" required autofocus >
                             </div>
                             <div class="mb-3">
                                 <label for="" class="text-dark">Password</label>
