@@ -7,6 +7,7 @@ use App\Models\Order_item;
 use Auth;
 use App\Models\user;
 use View;
+use Alert;
 use Session;
 use Illuminate\Http\Request;
 

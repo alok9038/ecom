@@ -9,6 +9,13 @@ use App\Models\Ship_document;
 class ShiprocketController extends Controller
 {
     public function create(Request $request,$id){
+        if(Auth::check() == false){
+            Alert::toast('Login First!', 'warning');
+            return redirect()->route('login');
+        }elseif(Auth::user()->is_admin == "USR"){
+            Alert::toast('Access Denied!', 'error');
+            return redirect()->back();
+        }
          
         $length = $_POST['length'];
         $height = $_POST['height'];
@@ -97,6 +104,13 @@ class ShiprocketController extends Controller
     }
 
     public function cancel_order($id){
+        if(Auth::check() == false){
+            Alert::toast('Login First!', 'warning');
+            return redirect()->route('login');
+        }elseif(Auth::user()->is_admin == "USR"){
+            Alert::toast('Access Denied!', 'error');
+            return redirect()->back();
+        }
         $ids = ['ids'=> [$id]]; 
         $token =  Shiprocket::getToken();
         $response =  Shiprocket::order($token)->cancel($ids);
@@ -107,6 +121,13 @@ class ShiprocketController extends Controller
     }
 
     public function track(){
+        if(Auth::check() == false){
+            Alert::toast('Login First!', 'warning');
+            return redirect()->route('login');
+        }elseif(Auth::user()->is_admin == "USR"){
+            Alert::toast('Access Denied!', 'error');
+            return redirect()->back();
+        }
         $shipmentId = 92241161;
         $token =  Shiprocket::getToken();
         
@@ -121,6 +142,13 @@ class ShiprocketController extends Controller
     }
 
     public function generate_awb(){
+        if(Auth::check() == false){
+            Alert::toast('Login First!', 'warning');
+            return redirect()->route('login');
+        }elseif(Auth::user()->is_admin == "USR"){
+            Alert::toast('Access Denied!', 'error');
+            return redirect()->back();
+        }
         $data = [
             'shipment_id' => '92241161',
             'status' => '1'
@@ -131,6 +159,13 @@ class ShiprocketController extends Controller
         print_r($response);
     }
     public function check(){
+        if(Auth::check() == false){
+            Alert::toast('Login First!', 'warning');
+            return redirect()->route('login');
+        }elseif(Auth::user()->is_admin == "USR"){
+            Alert::toast('Access Denied!', 'error');
+            return redirect()->back();
+        }
         $pincodeDetails = [
             'pickup_postcode' => '854301',
             'delivery_postcode' => '854301',

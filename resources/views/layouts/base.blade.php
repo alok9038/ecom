@@ -33,6 +33,7 @@
             }
         }
     </style>
+    @include('sweetalert::alert')
     @include('include.sidebar')
         <nav class="navbar navbar-expand-lg navbar-dark sticky-top main-nav" style="background-color:#ee4054;">
             <div class="container">

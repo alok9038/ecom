@@ -11,11 +11,25 @@ use Alert;
 class CategoryController extends Controller
 {
     public function category(){
+        if(Auth::check() == false){
+            Alert::toast('Login First!', 'warning');
+            return redirect()->route('login');
+        }elseif(Auth::user()->is_admin == "USR"){
+            Alert::toast('Access Denied!', 'error');
+            return redirect()->back();
+        }
         $data['categories'] = Category::all();
         return view('admin.category',$data);
     }
 
     public function storeCategory(Request $request){
+        if(Auth::check() == false){
+            Alert::toast('Login First!', 'warning');
+            return redirect()->route('login');
+        }elseif(Auth::user()->is_admin == "USR"){
+            Alert::toast('Access Denied!', 'error');
+            return redirect()->back();
+        }
         $request->validate([
             'title'          => 'required',
             'description'    => 'required',
@@ -39,6 +53,13 @@ class CategoryController extends Controller
     }
 
     public function drop_category($id){
+        if(Auth::check() == false){
+            Alert::toast('Login First!', 'warning');
+            return redirect()->route('login');
+        }elseif(Auth::user()->is_admin == "USR"){
+            Alert::toast('Access Denied!', 'error');
+            return redirect()->back();
+        }
         $delete = Category::where('id',$id)->delete();
         if ($delete == 1) {
             $success = true;
@@ -58,6 +79,13 @@ class CategoryController extends Controller
     }
 
     public function category_edit(Request $request, $id){
+        if(Auth::check() == false){
+            Alert::toast('Login First!', 'warning');
+            return redirect()->route('login');
+        }elseif(Auth::user()->is_admin == "USR"){
+            Alert::toast('Access Denied!', 'error');
+            return redirect()->back();
+        }
         
         Category::where('id',$id)->update([
             'title' => $request->title,

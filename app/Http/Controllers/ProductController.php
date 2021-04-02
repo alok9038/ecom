@@ -10,11 +10,25 @@ use App\Models\Category;
 class ProductController extends Controller
 {
     public function insert(){
+        if(Auth::check() == false){
+            Alert::toast('Login First!', 'warning');
+            return redirect()->route('login');
+        }elseif(Auth::user()->is_admin == "USR"){
+            Alert::toast('Access Denied!', 'error');
+            return redirect()->back();
+        }
         $data['category'] = Category::all();
         return view('admin.insertproduct',$data);
     }
 
     public function insertProduct(Request $request){
+        if(Auth::check() == false){
+            Alert::toast('Login First!', 'warning');
+            return redirect()->route('login');
+        }elseif(Auth::user()->is_admin == "USR"){
+            Alert::toast('Access Denied!', 'error');
+            return redirect()->back();
+        }
         $request->validate([
             'title'          => 'required',
             'price'          => 'required',
@@ -68,12 +82,26 @@ class ProductController extends Controller
     }
 
     public function products(){
+        if(Auth::check() == false){
+            Alert::toast('Login First!', 'warning');
+            return redirect()->route('login');
+        }elseif(Auth::user()->is_admin == "USR"){
+            Alert::toast('Access Denied!', 'error');
+            return redirect()->back();
+        }
         $data['products'] = Product::orderBy('id','desc')->get();
         return view('admin.manage_product',$data);
     }
     
 
     public function dropProduct($id){
+        if(Auth::check() == false){
+            Alert::toast('Login First!', 'warning');
+            return redirect()->route('login');
+        }elseif(Auth::user()->is_admin == "USR"){
+            Alert::toast('Access Denied!', 'error');
+            return redirect()->back();
+        }
         Product::where('id',$id)->delete();
         return redirect()->back();
     }

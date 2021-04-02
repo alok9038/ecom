@@ -63,21 +63,21 @@ Route::get('/coupon/{id}',[CartController::class,"coupon"])->name('coupon.remove
 
 Route::prefix('admin')->group(function () {
 
-    Route::get('/login', [AdminController::class,"login"])->name('admin.login.page');
-    Route::post('/login', [AdminController::class,"login"])->name('admin.login');
+    // Route::get('/login', [AdminController::class,"login"])->name('admin.login.page');
+    // Route::post('/login', [AdminController::class,"login"])->name('admin.login');
 
     Route::get('/download', [ShipController::class,"download_invoice"]);
     
-    Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
+    // Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
         
 
         Route::get('/', [AdminController::class,"index"])->name('admin.dashboard');
 
-        Route::post('admin/logout',function(){
-            session()->forget('ADMIN_LOGIN');
-            session()->forget('ADMIN_ID');
-            return redirect()->route('admin.login');
-        })->name('admin.logout');
+        // Route::post('admin/logout',function(){
+        //     session()->forget('ADMIN_LOGIN');
+        //     session()->forget('ADMIN_ID');
+        //     return redirect()->route('admin.login');
+        // })->name('admin.logout');
 
         
         Route::get('/insert',[ProductController::class,"insert"])->name('insert.product.view');
@@ -117,7 +117,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/check',[ShiprocketController::class,"check"])->name('check');
 
 
-    });   
+    // });   
 
     
 });

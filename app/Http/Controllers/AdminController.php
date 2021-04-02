@@ -8,6 +8,8 @@ use App\Models\Category;
 use App\Models\Coupon;
 use App\Models\Order_item;
 use App\Models\Admin;
+use Auth;
+use Alert;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 
@@ -16,6 +18,14 @@ class AdminController extends Controller
 
     
     public function index(){
+        if(Auth::check() == false){
+            Alert::toast('Login First!', 'warning');
+            return redirect()->route('login');
+        }elseif(Auth::user()->is_admin == "USR"){
+            Alert::toast('Access Denied!', 'error');
+            return redirect()->back();
+        }
+
         $data['products'] = Product::count();
         $data['category'] = Category::count();
         $data['coupon'] = Coupon::count();

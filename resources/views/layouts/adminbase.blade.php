@@ -80,7 +80,7 @@
                     <a href="{{ route('admin.settings') }}"><i class="fa fa-cogs me-3"></i> Settings</a>
                 </li>
                 <li>
-                    <form action="{{ route('admin.logout') }}" method="post">
+                    <form action="{{ route('logout') }}" method="post">
                         @csrf
                         <a onclick="this.closest('form').submit();return false;" href="#"><i class="fa fa-power-off text-danger me-3"></i> Logout</a>
                     </form> 
