@@ -10,9 +10,9 @@
         <div class="container px-2">
             <nav class="" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
                 <ol class="breadcrumb bg-white py-3 ps-3 rounded-0 shadow-sm">
-                  <li class="breadcrumb-item "><a href="{{ route('homepage') }}" class="text-muted text-decoration-none">Home</a></li>
-                  <li class="breadcrumb-item " aria-current="page"><a href="" class="text-decoration-none text-muted">Category</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">{{ $product->title }}</li>
+                  <li class="breadcrumb-item small"><a href="{{ route('homepage') }}" class="text-muted text-decoration-none">Home</a></li>
+                  <li class="breadcrumb-item small" aria-current="page"><a href="" class="text-decoration-none text-muted">Category</a></li>
+                  <li class="breadcrumb-item active small" aria-current="page">{{ $product->title }}</li>
                 </ol>
             </nav>
         </div>
@@ -104,7 +104,6 @@
             </div>    
         </div>    
     </div>    
-
     <div class="container mt-5 px-3" >
         <div class="card rounded-0" id="details">
             <div class="card-header rounded-0 " >Product Description</div>

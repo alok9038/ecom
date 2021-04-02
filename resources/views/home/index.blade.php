@@ -75,7 +75,7 @@
     
         {{-- latest collection --}}
         @if(count($products) > 0)
-        <div class="container-fluid pt-4 pb-lg-5 bg-white">
+        <div class="container-fluid pt-4 pb-lg-5 pb-4 bg-white">
             <div class="head text-center"><h4 class="fw-light text-center">Latest Collections <br> <img src="{{ asset('star.jpg') }}" alt="" class="img-fluid" style="width: 360px;"></h4></div>
             <section class="products w-100 slider mt-3 mb-5" style="height: 330px;">      
                 @foreach ($products as $product)
@@ -131,7 +131,7 @@
                 }
             @endphp
             <div class="col">
-                <div class="card border-0 mat-shadow-sm round-10">
+                <div class="card border-0 mat-shadow-sm product-card mx-auto round-10">
                     <div class="card-body p-0">
                         <img src="{{ asset('product/'.$product->cover_image) }}" style="height: 233px;" class="img-fluid round-lt-rt card-img-top" alt="">
                         <a href="{{ route('home.product',['name'=>$product->slug]) }}" title="{{ $product->title }}" class="stretched-link"></a>

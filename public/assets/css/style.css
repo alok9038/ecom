@@ -117,4 +117,7 @@
         width: auto!important;
         height: auto!important;
     }
+    .product-card{
+        width: 80%!important;
+    }
   }
