@@ -25,13 +25,13 @@ $(document).ready(function(){
         {
             breakpoint: 668,
             settings: {
-                slidesToShow: 4 
+                slidesToShow: 3 
             }
         },
         {
             breakpoint: 520,
             settings: {
-                slidesToShow: 3 
+                slidesToShow: 2 
             }
             
         },
