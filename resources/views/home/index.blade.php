@@ -116,7 +116,7 @@
     @endphp
     @if (count($products) > 0)
     <div class="container py-4">
-        <div class="head text-center"><h4 class="fw-light text-center">{{ $category->cat_title }}<br> <img src="{{ asset('star.jpg') }}" alt="" class="img-fluid" style="width: 360px;"></h4></div>
+        <div class="head text-center"><h4 class="fw-light text-center text-capitalize">{{ $category->cat_title }}<br> <img src="{{ asset('star.jpg') }}" alt="" class="img-fluid" style="width: 360px;"></h4></div>
         <div class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-2">
             @php
                 $ParaMeter['id'] = $category->id;

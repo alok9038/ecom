@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Seshac\Shiprocket\Shiprocket;
 use App\Models\Order_item;
 use App\Models\Ship_document;
+use Auth;
 class ShiprocketController extends Controller
 {
     public function create(Request $request,$id){

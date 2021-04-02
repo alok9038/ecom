@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Str;
 use App\Models\Category;
+use Auth;
 
 class ProductController extends Controller
 {
