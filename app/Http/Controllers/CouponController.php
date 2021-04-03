@@ -5,14 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Coupon;
 use Auth;
+use Alert;
 
 class CouponController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
     public function store_coupon(Request $req){
-        if(Auth::check() == false){
-            Alert::toast('Login First!', 'warning');
-            return redirect()->route('login');
-        }elseif(Auth::user()->is_admin == "USR"){
+        if(Auth::user()->is_admin == "USR"){
             Alert::toast('Access Denied!', 'error');
             return redirect()->back();
         }
@@ -30,10 +31,7 @@ class CouponController extends Controller
     }
 
     public function coupon(){
-        if(Auth::check() == false){
-            Alert::toast('Login First!', 'warning');
-            return redirect()->route('login');
-        }elseif(Auth::user()->is_admin == "USR"){
+        if(Auth::user()->is_admin == "USR"){
             Alert::toast('Access Denied!', 'error');
             return redirect()->back();
         }
@@ -42,10 +40,7 @@ class CouponController extends Controller
     }
 
     public function drop_coupon($id){
-        if(Auth::check() == false){
-            Alert::toast('Login First!', 'warning');
-            return redirect()->route('login');
-        }elseif(Auth::user()->is_admin == "USR"){
+        if(Auth::user()->is_admin == "USR"){
             Alert::toast('Access Denied!', 'error');
             return redirect()->back();
         }
@@ -53,10 +48,7 @@ class CouponController extends Controller
         return redirect()->back();
     }
     public function coupon_status(Request $req, $id){
-        if(Auth::check() == false){
-            Alert::toast('Login First!', 'warning');
-            return redirect()->route('login');
-        }elseif(Auth::user()->is_admin == "USR"){
+        if(Auth::user()->is_admin == "USR"){
             Alert::toast('Access Denied!', 'error');
             return redirect()->back();
         }

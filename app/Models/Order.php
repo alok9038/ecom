@@ -9,9 +9,9 @@ class Order extends Model
 {
     use HasFactory;
     protected $guarded = []; 
-    public function coupon(){
+    public function coup(){
          
-        return $this->hasOne('App\Models\Coupon','id','coupon_id');
+        return $this->hasOne('App\Models\Coupon','id','coupon');
     }
     public function add(){
         return $this->hasOne('App\Models\Address','id','address');

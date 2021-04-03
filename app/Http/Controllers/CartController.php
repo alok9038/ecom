@@ -79,25 +79,26 @@ class CartController extends Controller
         $coupon = $req->code;
 
         // remove coupon
-        if($id!= null){
-            $query = Order::where('id',$id)->update([
-                'coupon' => null
-                ]);
-                return redirect()->back();
-        }
-        else{
-            echo "<script>alert('Something Went Wrong')</script>";
-        }
+        // if($id!= null){
+        //     $query = Order::where('id',$id)->update([
+        //         'coupon' => null
+        //         ]);
+        //         return redirect()->back();
+        // }
+        // else{
+        //     echo "<script>alert('Something Went Wrong')</script>";
+        // }
 
         // add coupon
-        $check = Coupon::where(['code',$coupon],['status'=> 1])->get();
-        if(count($check) == 0){
-            echo "<script>alert('coupon code not valid')</script>";
-            //return redirect()->back();
-        }else{
+        $check = Coupon::where([['code',$coupon],['status',1]])->get();
+        if(count($check) > 0){
             $query = Order::where('id',$order_id)->update([
                 'coupon' => $check[0]->id,
                 ]);
+            
+            return redirect()->back();
+        }else{
+            echo "<script>alert('coupon code not valid')</script>";
                 return redirect()->back();
         }
         

@@ -14,6 +14,7 @@ use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ShiprocketController;
 use App\Http\Controllers\PaytmController;
+use App\Http\Controllers\WishlistController;
 
 // for homepage //
 Route::get('/redirect', [RedirectController::class,"redirect"])->name('redirect');
@@ -54,6 +55,7 @@ Route::post('/coupon', [CartController::class,"coupon"])->name('coupon');
 // remove coupon
 Route::get('/coupon/{id}',[CartController::class,"coupon"])->name('coupon.remove');
 
+Route::post('/wishlist', [WishlistController::class,"add"])->name('wishlist');
 
 // for users
 

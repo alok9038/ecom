@@ -80,9 +80,9 @@
                                 <td>₹ {{ $sum }}</td>
                             </tr>
                             <tr>
-                                @if(!empty($order->coupon_id))
+                                @if(!empty($order->coupon))
                                 <td class="">Coupon Discount</td>
-                                <td class="">- ₹ {{  $order->coupon->amount }}</td>
+                                <td class="">- ₹ {{  $order->coup->amount }}</td>
                                 @endif
                             </tr>
                             <tr class="">
@@ -93,8 +93,8 @@
                                 <th class="">Total amount</th>
                                 
                                 <th class="">₹ 
-                                    @if (!empty($order->coupon_id))
-                                        {{ $sum - $order->coupon->amount }}
+                                    @if (!empty($order->coupon))
+                                        {{ $sum - $order->coup->amount }}
                                     @else
                                         {{ $sum }}
                                     @endif
@@ -105,7 +105,7 @@
                         <form action="{{ route('coupon') }}" class="mt-3" method="post">
                             @csrf
                             <div class="input-group">
-                                <input type="text" name="order_id" hidden value="{{ $item->id }}">
+                                <input type="text" name="order_id" hidden value="{{ $item->order_id }}">
                                 <input type="search" name="code" placeholder="Enter coupon code" class="form-control shadow-none rounded-0">
                                 <div class="input-group-append">
                                     <input type="submit" value="Apply" class="btn btn-info rounded-0">
@@ -113,9 +113,9 @@
                             </div>
                         </form>
 
-                            @if (!empty($order->coupon_id))
+                            @if (!empty($order->coupon))
                                 <h6 class="mt-3 text-success-2">
-                                    <a href="{{ route('coupon.remove',['id'=>$order->id]) }}" class="text-theme"><i class="fa fa-trash"></i></a> <strong>{{ $order->coupon->code }}</strong> <small>Applied</small>
+                                    <a href="{{ route('coupon.remove',['id'=>$order->id]) }}" class="text-theme"><i class="fa fa-trash"></i></a> <strong>{{ $order->coup->code }}</strong> <small>Applied</small>
                                 </h6>
                             @endif
                         

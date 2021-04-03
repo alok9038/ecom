@@ -1,6 +1,7 @@
 @extends('layouts.base')
 
 @section('content')
+    @if (count($order) > 0)
     <div class="container my-4 bg-white">
         @foreach ($order as $item)
         <div class="card border-0 my-2 bg-white">
@@ -41,4 +42,9 @@
         </div>
         @endforeach
     </div>
+    @else
+    <div class="d-flex align-items-center justify-content-center" style="height: 50vh">
+        <h2 class="fw-light h1">No orders Yet!</h2>
+    </div>
+    @endif
 @endsection
