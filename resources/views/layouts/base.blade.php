@@ -87,7 +87,7 @@
                 @endguest
                 @auth
                     <ul class="navbar-nav d-flex d-lg-none">
-                        <li class="nav-item"><a href="{{ route('cart') }}" class="nav-link"><i class="fa fa-shopping-cart text-light"></i></a></li>
+                        <li class="nav-item"><a href="{{ route('cart') }}" class="nav-link"><i class="fa fa-shopping-cart text-light"></i><sup><span class="badge bg-white text-dark rounded-circle">{{ cart_count() }}</span></sup></a></li>
                     </ul>
                 @endauth
             </div>
