@@ -142,7 +142,12 @@
                 <div class="col d-flex justify-content-center"><a href="{{ route('homepage') }}" class="text-decoration-none"><i class="fa fa-home @if(Request::segment(1) == '') text-theme @endif" style="font-size: 18px!important"></i></div></a>
                 <div class="col d-flex justify-content-center"><a href="{{ route('homepage') }}" class="text-decoration-none"><i class="fa fa-heart" style="font-size: 18px!important"></i></div></a>
                 <div class="col d-flex justify-content-center"><a href="{{ route('homepage') }}" class="text-decoration-none"><i class="fa fa-user" style="font-size: 18px!important"></i></div></a>
-                <div class="col d-flex justify-content-center"><a href="{{ route('cart') }}" class="text-decoration-none"><i class="fa fa-shopping-cart @if(Request::segment(1) == 'cart') text-theme @endif" style="font-size: 18px!important"></i></div></a>
+                @auth
+                    <div class="col d-flex justify-content-center"><a href="{{ route('cart') }}" class="text-decoration-none"><i class="fa fa-shopping-cart @if(Request::segment(1) == 'cart') text-theme @endif" style="font-size: 18px!important"></i><sup><span class="badge @if(Request::segment(1) == 'cart') bg-theme @endif bg-dark text-white rounded-circle" style="font-family: sans-serif!important;">{{ cart_count() }}</span></sup></div></a>
+                @endauth
+                @guest
+                    <div class="col d-flex justify-content-center"><a href="{{ route('cart') }}" class="text-decoration-none"><i class="fa fa-shopping-cart @if(Request::segment(1) == 'cart') text-theme @endif" style="font-size: 18px!important"></i></div></a>
+                @endguest
             </div>
         </div>
     </div>
