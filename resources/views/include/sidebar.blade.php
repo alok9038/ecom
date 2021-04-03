@@ -9,6 +9,21 @@
             <li class="">
                 <a href="{{ route('homepage') }}">Home</a>
             </li>
+            @auth
+            <li class="">
+                <a href="#profile" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Profile</a>
+                <ul class="collapse list-unstyled" id="profile">
+                    <li>
+                        <a href="#">My Account</a>
+                    </li>
+                    <li>
+                        <a href="#">My Orders</a>
+                    </li>
+                    <li><a class="dropdown-item small" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-power-off text-danger"></i> Logout</a></li>
+                    <form action="{{ route('logout') }}" id="logout-form" method="post">@csrf</form>
+                </ul>
+            </li>
+            @endauth
             @php
                 $categories = category()
             @endphp
