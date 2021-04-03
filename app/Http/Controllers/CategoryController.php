@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Alert;
+use Auth;
 
 class CategoryController extends Controller
 {

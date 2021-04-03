@@ -4,8 +4,8 @@
   <div class="container-fluid px-3">
     <div class="row">
       <div class="col-sm-12 col-lg-5 col-md-12">
-          <img src="" width="300px"
-          alt="" title="Lealmart-Logo">
+          {{-- <img src="" width="300px"
+          alt="" title="Lealmart-Logo"> --}}
           <h3>Kumar Studio</h3>
           <p class="">
             Kumar Studio Gifts having pioneered the concept of personalized gifts in our city (purnea), today has become a driver of marketplace innovation and a contributor in local economies. The journey of KSF, much like the gifts which are at the very heart of its business, has been an organic one. Started in 2020 in Purnea, by the enterprising Mr. Kumar Mayank.
@@ -51,12 +51,12 @@
 
       <div class="col-md-4 col-sm-6 col-xs-12">
         <ul class="social-icons">
-          <li><a class="facebook bg-theme" href="#" target="_blank" rel="nofollow noreferrer" title="Facebook"><i class="fa fa-facebook-square"></i></a></li>
-          <li><a class="twitter bg-theme" href="#" target="_blank" rel="nofollow noreferrer" title="twitter"><i class="fa fa-twitter"></i></a></li>
-          <li><a class="youtube bg-theme" href="#" target="_blank" rel="nofollow noreferrer" title="youtube"><i class="fa fa-youtube"></i></a></li>
-          <li><a class="linkedin bg-theme" href="#" target="_blank" rel="nofollow noreferrer" title="linkedin"><i class="fa fa-linkedin"></i></a></li>   
+          <li><a class="facebook bg-theme d-flex justify-content-center align-items-center" href="#" target="_blank" rel="nofollow noreferrer" title="Facebook"><i class="fa fa-facebook-square"></i></a></li>
+          <li><a class="twitter bg-theme d-flex justify-content-center align-items-center" href="#" target="_blank" rel="nofollow noreferrer" title="twitter"><i class="fa fa-twitter"></i></a></li>
+          <li><a class="youtube bg-theme d-flex justify-content-center align-items-center" href="#" target="_blank" rel="nofollow noreferrer" title="youtube"><i class="fa fa-youtube"></i></a></li>
+          <li><a class="linkedin bg-theme d-flex justify-content-center align-items-center" href="#" target="_blank" rel="nofollow noreferrer" title="linkedin"><i class="fa fa-linkedin"></i></a></li>   
           {{-- <li><a class="pinterest bg-theme" href="#" target="_blank" rel="nofollow noreferrer" title="pinterest"><i class="fa fa-pinterest"></i></a></li>    --}}
-          <li><a class="instagram bg-theme" href="#" target="_blank" rel="nofollow noreferrer" title="instagram"><i class="fa fa-instagram"></i></a></li>   
+          <li><a class="instagram bg-theme d-flex justify-content-center align-items-center" href="#" target="_blank" rel="nofollow noreferrer" title="instagram"><i class="fa fa-instagram"></i></a></li>   
         </ul>
       </div>
     </div>
