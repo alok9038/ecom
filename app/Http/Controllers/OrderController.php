@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\product;
 use App\Models\Ship_document;
 use Auth;
+use Alert;
 class OrderController extends Controller
 {
     public function __construct(){

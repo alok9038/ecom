@@ -85,7 +85,7 @@
                                 <img src="{{ asset('product/'.$product->cover_image) }}" style="height: 233px;" class="img-fluid round-lt-rt card-img-top" alt="{{ $product->cover_image }}">
                             </div>
                             <div class="card-footer border-0 bg-transparent">
-                                <a href="{{ route('home.product',['name'=>$product->slug]) }}" title="{{ $product->title }}" style="outline: none!important" class="stretched- text-decoration-none text-dark">
+                                <a href="{{ route('home.product',['name'=>$product->slug]) }}" title="{{ $product->title }}" style="outline: none!important" class="stretched-link text-decoration-none text-dark">
                                     <p class="text-truncate">{{ $product->title }}</p>
                                 </a>
                                 <h6 class="text-theme">₹. {{ $product->discount_price }}/- <span class="text-dark small float-end"><del>₹. {{ $product->price }}/-</del></span></h6>
@@ -96,12 +96,11 @@
                                     <i class="fa fa-star text-warning"></i>
                                     <i class="fa fa-star text-warning"></i>
                                 </span>
-                                <form id="wishlist_form">
-                                    {{-- <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}"> --}}
+                                {{-- <form id="wishlist_form">
                                     <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                     <button type="submit" class="float-end bg-transparent border-0" id="wishlist"><i class="fa fa-heart"></i></button>
-                                </form>
+                                </form> --}}
                             </div>
                         </div>
                     </div>  
@@ -140,7 +139,7 @@
                 <div class="card border-0 mat-shadow-sm product-card mx-auto round-10">
                     <div class="card-body p-0">
                         <img src="{{ asset('product/'.$product->cover_image) }}" style="height: 233px;" class="img-fluid round-lt-rt card-img-top" alt="">
-                        <a href="{{ route('home.product',['name'=>$product->slug]) }}" title="{{ $product->title }}" class="stretched"></a>
+                        <a href="{{ route('home.product',['name'=>$product->slug]) }}" title="{{ $product->title }}" class="stretched-link"></a>
                     </div>
                     <div class="card-footer border-0 bg-transparent">
                         <p>{{ $product->title }}</p>
@@ -152,12 +151,11 @@
                             <i class="fa fa-star text-warning"></i>
                             <i class="fa fa-star text-warning"></i>
                         </span>
-                        <form id="wishlist_form">
-                            {{-- <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}"> --}}
+                        {{-- <form id="wishlist_form">
                             <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                             <button class="float-end bg-transparent border-0" id="wishlist"><i class="fa fa-heart"></i></button>
-                        </form>
+                        </form> --}}
                     </div>
                 </div>
             </div>
@@ -167,7 +165,7 @@
     @endif
     @endforeach 
     @endif
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -187,27 +185,8 @@
                }
             });
        });
-    </script>
-    {{-- <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        jQuery('#wishlist_form').submit(function(e){
-            e.preventDefault();
-            var user_id = $("input[name=user_id]").val();
-            var product_id = $("input[name=product_id]").val();
-            jQuery.ajax({
-               url:"/wishlist",
-               type:'POST',
-               data:{user_id:user_id, product_id:product_id},
-               success:function(result){
-                   jQuery('#wishlist_form')['0'].reset();
-               }
-            });
-       });
     </script> --}}
+
     <div class="container-fluid p-0 mt-4">
         <img src="{{ asset('assets/images/covid-strip.webp') }}" style="object-fit:fill;" alt="delivery" class="img-fluid">
     </div>
