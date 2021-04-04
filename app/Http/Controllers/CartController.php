@@ -182,7 +182,7 @@ class CartController extends Controller
             $add->pincode = $req->pincode;
             $add->landmark = $req->landmark;
             $add->user_id = $user_id;
-            $add->email = Auth::user()->email;
+            $add->email = $req->email;
             $add->save();
             echo $last_id = $add->id;
 
