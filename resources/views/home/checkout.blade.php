@@ -40,6 +40,10 @@
                             <input type="texts" name="contact" id="" class="form-control" value="">
                         </div>
                         <div class="mb-3">
+                            <label for="">Email</label>
+                            <input type="texts" name="email" id="" class="form-control" value="">
+                        </div>
+                        <div class="mb-3">
                             <label for="">Street</label>
                             <input type="text" name="street" id="" class="form-control" value="">
                         </div>
