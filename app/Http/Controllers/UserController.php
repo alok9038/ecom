@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function my_orders(){
         $user =  Auth::id();
-        $data['order'] = Order_item::where('user_id',$user)->orderBy('id','desc')->get();  
+        $data['order'] = Order_item::where([['user_id',$user],['ordered',1]])->orderBy('id','desc')->get();  
         return view('home.myorders',$data);
     }
     public function order_details($id){
