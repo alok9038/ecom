@@ -2,30 +2,7 @@
 @section('content')
 @parent
 {{-- {{ session()->get('utype') }} --}}
-    <style>
-        .col-progressbar{
-            width: 4%;
-            margin-right: auto;
-            margin-left: auto;
-            background-color: black;
-            border-radius: 25px;
-            bottom: 0;
-            display: block;
-            position: absolute;
-            width: 4%;
-            margin-right: auto;
-            margin-left: auto;
-        }
-        .p-row{
-            height: 400px;
-            
-        }
-        .col-progressbar:nth-child(1){
-            height: 25%;
-            bottom: 0!important;
-            
-        }
-    </style>
+
     <div class="container px-5 pt-1" style="margin-top: -50px">
         <div class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-2">
             <div class="col mb-4">
@@ -94,26 +71,6 @@
             </div> --}}
             
         </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5">
-                    <div class="card border-0">
-                        <div class="card-body">
-                            <h6 class="text-muted fw-light">Performance</h6>
-                            <hr>
-                            <div class="row p-row g-2">
-                                <div class="col-progressbar ">h</div>
-                                <div class="col-progressbar"></div>
-                                <div class="col-progressbar"></div>
-                                <div class="col-progressbar"></div>
-                                <div class="col-progressbar"></div>
-                                <div class="col-progressbar"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-7"></div>
-            </div>
-        </div>
+        
     </div>
 @endsection

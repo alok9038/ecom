@@ -100,7 +100,7 @@
                 </div>
             </nav>
             @section('content')
-                <div class="container-fluid bg-theme-2 p-5 border-top border-secondary" style="margin-top:-40px;">
+                <div class="container-fluid bg-theme-2 p-5 border-top border-secondary d-lg-flex d-none" style="margin-top:-40px;">
                     <div class=" text-light">
                         <div class="card border-0 bg-theme-2">
                             <div class="card-body">
