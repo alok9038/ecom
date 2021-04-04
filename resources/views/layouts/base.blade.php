@@ -43,9 +43,9 @@
                     <li class="nav-item"><a href="#" id="sidebarCollapse" class="nav-link"><i class="fa fa-align-left text-light"></i></a></li>
                 </ul>
                 <a href="{{ route('homepage') }}" class="navbar-brand mx-auto mx-lg-0 mx-md-0">Kumar Studio</a>
-                <form action="" class="mx-auto d-lg-flex d-none">
+                <form action="{{ route('search') }}" method="GET" class="mx-auto d-lg-flex d-none">
                     <div class="d-flex bg-white round-15 p-1">
-                        <input type="search" size="50" placeholder="search gifts here .. " class="form-control border-0 shadow-none round-15">
+                        <input type="search" name="search"  size="50" placeholder="search gifts here .. " class="form-control border-0 shadow-none round-15">
                         <button class="btn round-15 shadow-none bg-theme text-white px-3"><i class="fa fa-search"></i></button>
                     </div> 
                 </form>
@@ -96,9 +96,9 @@
         </nav>
         <nav class="navbar-expand-lg navbar-dark pb-2 d-lg-none d-flex bg-theme">
             <div class="container">
-                <form action="" class="mx-auto">
+                <form action="{{ route('search') }}" method="get" class="mx-auto">
                     <div class="d-flex bg-white round-15 p-1">
-                        <input type="search" size="50" placeholder="search gifts here .. " class="form-control border-0 shadow-none round-15">
+                        <input type="search" size="50" name="search" placeholder="search gifts here .. " class="form-control border-0 shadow-none round-15">
                         <button class="btn round-15 shadow-none bg-theme text-white px-3"><i class="fa fa-search"></i></button>
                     </div> 
                 </form>

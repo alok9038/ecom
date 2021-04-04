@@ -33,6 +33,15 @@ class HomeController extends Controller
         $data['products'] = Product::where('cat_id',$cat[0]->id)->get();
         return view('home.filter',$data);
     }
+
+    public function search(Request $request){
+        if($request->search){
+            $search = $request->search;
+            $data['products'] = Product::where('title','LIKE',"%$search%")->orderBy('id','desc')->get();
+        }
+
+        return view('home.filter',$data);
+    }
     
     
 }

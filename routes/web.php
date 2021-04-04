@@ -31,6 +31,7 @@ Route::get('/product/{name}', [HomeController::class,"product"])->name('home.pro
 //Route::get('/{name}', [HomeController::class,"cat_filter"])->name('cat_filter');
 Route::post('/test', [ShipController::class,"check"])->name('abc');
 Route::get('/category/{name}',[HomeController::class,"filter"])->name('filter');
+Route::get('/search',[HomeController::class,"search"])->name('search');
 
 Route::get('/my_orders',[UserController::class,"my_orders"])->name('my.orders');
 Route::get('/order_details/{id}',[UserController::class,"order_details"])->name('order.details');

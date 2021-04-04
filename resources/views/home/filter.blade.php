@@ -5,7 +5,13 @@
         
     
     <div class="container my-5">
-        <div class="head text-center"><h4 class="fw-light text-center">{{ $products[0]->cat->cat_title }} <br> <img src="{{ asset('star.jpg') }}" alt="" class="img-fluid" style="width: 360px;"></h4></div>
+        <div class="head text-center">
+            @if(isset($_GET['search']))
+                <h4 class="fw-light text-center">Search Results for: {{ $_GET['search'] }}<br> <img src="{{ asset('star.jpg') }}" alt="" class="img-fluid" style="width: 360px;"></h4>
+            @else
+                <h4 class="fw-light text-center">{{ $products[0]->cat->cat_title }} <br> <img src="{{ asset('star.jpg') }}" alt="" class="img-fluid" style="width: 360px;"></h4>
+            @endif
+        </div>
         <div class="row row-cols-1 row-cols-lg-4 row-cols-md-3">
             @foreach ($products as $product)
                 <div class="col">
@@ -22,10 +28,15 @@
     </div>
     @else
     <div class="container pt-5 mb-5">
+        @if(isset($_GET['search']))
+            <h4 class="fw-light text-center ">Search Results for: {{ $_GET['search'] }}<br> <img src="{{ asset('star.jpg') }}" alt="" class="img-fluid" style="width: 360px;"></h4>
+        @endif
         <div class="row my-5">
             <div class="col-lg-5 mx-auto">
-            <h5 class="text-center font-weight-light text-muted">No items Found!</h5>
+            <h5 class="text-center font-weight-light text-muted">No Products Found!</h5>
+            @if(!isset($_GET['search']))
             <p class="text-center small text-muted">Please Try with another category :)</p>
+            @endif
             </div>
         </div>
     </div>
