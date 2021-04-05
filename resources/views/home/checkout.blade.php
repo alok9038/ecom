@@ -3,7 +3,7 @@
 <div class="container my-5">
     <div class="row">
         <div class="col-lg-12 mx-auto ">
-            <div class="card border-0 shadow">
+            <div class="card border-0 mat-shadow-sm">
             <form action="{{ route('insert.address') }}" class="available_add" method="post">
                 <div class="card border-0 shadow">
                     @foreach($address as $pata)
@@ -14,7 +14,8 @@
                             <label class="form-check-label" for="{{ $pata->id }}">
     
                                 <h4 class="h5 "> {{ $pata->name }}</h4>
-                                <h5 class="h6 small">{{ $pata->contact }}</h5>
+                                <h5 class="h6 small">+91 {{ $pata->contact }}</h5>
+                                <h5 class="h6 small">{{ $pata->email }}</h5>
                                 <p>{{ $pata->street }},  {{ $pata->city }}, {{ $pata->pincode }}</p>
                                 <p class="mt-n3">{{ $pata->state }}</p class="small">
                             </label>

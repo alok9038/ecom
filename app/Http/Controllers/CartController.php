@@ -153,11 +153,11 @@ class CartController extends Controller
 
         if(!empty($req->address)){
             $address_id = $req->address;
-            Order::where(['ordered'=>false],['user_id'=>$user_id])->update(['address'=>$address_id, 'user_id'=>$user_id, 'ordered'=>true]);
-            Order_item::where(['ordered'=>false],['user_id'=>$user_id])->update(['user_id'=>$user_id, 'ordered'=>true]);
-            $order = Order::where(['ordered'=>true],['user_id'=>$user_id])->orderBy('updated_at','desc')->first();
-            // $order_id =   Crypt::encryptString($order->id);
-            $order_id = $order->id;
+            Order::where(['ordered'=>false],['user_id'=>$user_id])->update(['address'=>$address_id, 'user_id'=>$user_id, 'ordered'=>false]);
+            Order_item::where(['ordered'=>false],['user_id'=>$user_id])->update(['user_id'=>$user_id, 'ordered'=>false]);
+            $order = Order::where(['ordered'=>false],['user_id'=>$user_id])->orderBy('updated_at','desc')->first();
+            $order_id =   Crypt::encryptString($order->id);
+            // $order_id = $order->id;
             return redirect()->route('paytm.payment',['id'=>$order_id]);
         }else{
             $req->validate([
@@ -167,6 +167,7 @@ class CartController extends Controller
                 'city' => 'required',
                 'pincode' => 'required',
                 'state' => 'required',
+                'email' => 'required',
                 'pincode' => 'required|size:6',
                 'landmark' => 'required'
             ]);
@@ -187,8 +188,9 @@ class CartController extends Controller
             echo $last_id = $add->id;
 
             // $order = Order::where(['ordered'=>true],['user_id'=>$user_id])->orderBy('updated_at','desc')->first();
-            $order = Order::where(['ordered'=>false],['user_id'=>$user_id])->update(['address'=>$last_id, 'user_id'=>$user_id, 'ordered'=>true]);
-            Order_item::where(['ordered'=>false],['user_id'=>$user_id],['order_id'=>$order->id])->update(['user_id'=>$user_id, 'ordered'=>true]);
+            Order::where(['ordered'=>false],['user_id'=>$user_id])->update(['address'=>$last_id, 'user_id'=>$user_id, 'ordered'=>false]);
+            // Order_item::where(['ordered'=>false],['user_id'=>$user_id],['order_id'=>$order->id])->update(['user_id'=>$user_id, 'ordered'=>false]);
+            $order = Order::where(['ordered'=>false],['user_id'=>$user_id],['address',$last_id])->orderBy('updated_at','desc')->first();
             $order_id =Crypt::encryptString($order->id);
             return redirect()->route('order.placed',['id'=>$order_id]);
 
