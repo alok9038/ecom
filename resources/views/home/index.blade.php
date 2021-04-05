@@ -151,11 +151,7 @@
                             <i class="fa fa-star text-warning"></i>
                             <i class="fa fa-star text-warning"></i>
                         </span>
-                        {{-- <form id="wishlist_form">
-                            <input type="hidden" name="user_id" value="{{ Auth::id() }}">
-                            <input type="hidden" name="product_id" value="{{ $product->id }}">
-                            <button class="float-end bg-transparent border-0" id="wishlist"><i class="fa fa-heart"></i></button>
-                        </form> --}}
+                        {{-- <button class="float-end bg-transparent border-0 asdf_wishlist" id="{{ Auth::id() }}_{{ $product->id }}"><i class="fa fa-heart wishlist"></i></button> --}}
                     </div>
                 </div>
             </div>
@@ -165,27 +161,48 @@
     @endif
     @endforeach 
     @endif
-    {{-- <script type="text/javascript">
+    <script>
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        $("#wishlist").click(function(e){
-            e.preventDefault();
-            var user_id = $("input[name=user_id]").val();
-            var product_id = $("input[name=product_id]").val();
-            // var email = $("input[name=email]").val();
-            $.ajax({
-               type:'POST',
-               url:'/wishlist',
-               data:{user_id:user_id, product_id:product_id},
-               success:function(data){
-                  alert(data.success);
-               }
-            });
-       });
-    </script> --}}
+        $(document).ready(function() {
+			$('.asdf_wishlist').click(function(e) {
+                e.preventDefault();
+                var el = this;
+				var id = this.id;
+				var splitid = id.split("_");
+
+				// Add id
+				var user_id = splitid[0];
+				var product_id = splitid[1];
+				// AJAX Request
+				$.ajax({
+                    url:'/wishlist',
+					type: 'POST',
+					data:{
+                        user_id:user_id, 
+                        product_id:product_id
+                    },
+					success: function(response) {
+						if (response === '1') {
+							// var count = $("#table_cart tr").length;
+							// if (count < 3) {
+								// $('.wishlist').addClass('text-danger')
+							}
+							// $('.cross_' + uid + '_' + oid).fadeOut('slow', function(c) {
+							// 	$('.cross_' + uid + '_' + oid).remove();
+							// });
+						// } 
+                        else {
+							alert('something went wrong');
+						}
+					}
+				});
+			});
+			});
+	</script>
 
     <div class="container-fluid p-0 mt-4">
         <img src="{{ asset('assets/images/covid-strip.webp') }}" style="object-fit:fill;" alt="delivery" class="img-fluid">
