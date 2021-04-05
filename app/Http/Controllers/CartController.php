@@ -192,7 +192,7 @@ class CartController extends Controller
             // Order_item::where(['ordered'=>false],['user_id'=>$user_id],['order_id'=>$order->id])->update(['user_id'=>$user_id, 'ordered'=>false]);
             $order = Order::where(['ordered'=>false],['user_id'=>$user_id],['address',$last_id])->orderBy('updated_at','desc')->first();
             $order_id =Crypt::encryptString($order->id);
-            return redirect()->route('order.placed',['id'=>$order_id]);
+            return redirect()->route('paytm.payment',['id'=>$order_id]);
 
         }
         return redirect()->route('order.placed');
