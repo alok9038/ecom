@@ -106,6 +106,7 @@
                             @csrf
                             <div class="input-group">
                                 <input type="text" name="order_id" hidden value="{{ $item->order_id }}">
+                                <input type="text" name="total_amount" hidden value="{{ $sum }}">
                                 <input type="search" name="code" placeholder="Enter coupon code" class="form-control shadow-none rounded-0">
                                 <div class="input-group-append">
                                     <input type="submit" value="Apply" class="btn btn-info rounded-0">

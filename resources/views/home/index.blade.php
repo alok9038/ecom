@@ -81,11 +81,13 @@
                 @foreach ($products as $product)
                     <div class="slide py-2 mx-2" style="height: auto; outline:none!important;">
                         <div class="card mx-auto border-0 mx-auto mat-shadow-sm round-10" style="width: 90%;">
-                            <div class="card-body p-0">
-                                <img src="{{ asset('product/'.$product->cover_image) }}" style="height: 233px;" class="img-fluid round-lt-rt card-img-top" alt="{{ $product->cover_image }}">
-                            </div>
+                            <a href="{{ route('home.product',['name'=>$product->slug]) }}" title="{{ $product->title }}" class="stretched">
+                                <div class="card-body p-0">
+                                    <img src="{{ asset('product/'.$product->cover_image) }}" style="height: 233px;" class="img-fluid round-lt-rt card-img-top" alt="">
+                                </div>
+                            </a>
                             <div class="card-footer border-0 bg-transparent">
-                                <a href="{{ route('home.product',['name'=>$product->slug]) }}" title="{{ $product->title }}" style="outline: none!important" class="stretched-link text-decoration-none text-dark">
+                                <a href="{{ route('home.product',['name'=>$product->slug]) }}" title="{{ $product->title }}" style="outline: none!important" class=" text-decoration-none text-dark">
                                     <p class="text-truncate">{{ $product->title }}</p>
                                 </a>
                                 <h6 class="text-theme">₹. {{ $product->discount_price }}/- <span class="text-dark small float-end"><del>₹. {{ $product->price }}/-</del></span></h6>
@@ -96,11 +98,12 @@
                                     <i class="fa fa-star text-warning"></i>
                                     <i class="fa fa-star text-warning"></i>
                                 </span>
-                                {{-- <form id="wishlist_form">
-                                    <input type="hidden" name="user_id" value="{{ Auth::id() }}">
-                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                    <button type="submit" class="float-end bg-transparent border-0" id="wishlist"><i class="fa fa-heart"></i></button>
-                                </form> --}}
+                                @guest
+                                    <a href="{{ route('login') }}" class="text-decoration-none float-end"><i class="fa fa-heart"></i></a>
+                                @endguest
+                                @auth
+                                    <button class="float-end bg-transparent border-0 asdf_wishlist" id="{{ Auth::id() }}_{{ $product->id }}"><i class="fa fa-heart wislist_heart_{{ $product->id }}"></i></button>
+                                @endauth
                             </div>
                         </div>
                     </div>  
@@ -137,12 +140,13 @@
             @endphp
             <div class="col">
                 <div class="card border-0 mat-shadow-sm product-card mx-auto round-10">
-                    <div class="card-body p-0">
-                        <img src="{{ asset('product/'.$product->cover_image) }}" style="height: 233px;" class="img-fluid round-lt-rt card-img-top" alt="">
-                        <a href="{{ route('home.product',['name'=>$product->slug]) }}" title="{{ $product->title }}" class="stretched-link"></a>
-                    </div>
+                    <a href="{{ route('home.product',['name'=>$product->slug]) }}" title="{{ $product->title }}" class="stretched">
+                        <div class="card-body p-0">
+                            <img src="{{ asset('product/'.$product->cover_image) }}" style="height: 233px;" class="img-fluid round-lt-rt card-img-top" alt="">
+                        </div>
+                    </a>
                     <div class="card-footer border-0 bg-transparent">
-                        <p>{{ $product->title }}</p>
+                        <a href="{{ route('home.product',['name'=>$product->slug]) }}" title="{{ $product->title }}" class="stretched"><p>{{ $product->title }}</p></a>
                         <h6 class="text-theme">Rs. {{ $product->discount_price }}<span class="text-dark small float-end"><del>Rs. {{ $product->price }}</del></span></h6>
                         <span>
                             <i class="fa fa-star text-warning"></i>
@@ -151,7 +155,13 @@
                             <i class="fa fa-star text-warning"></i>
                             <i class="fa fa-star text-warning"></i>
                         </span>
-                        {{-- <button class="float-end bg-transparent border-0 asdf_wishlist" id="{{ Auth::id() }}_{{ $product->id }}"><i class="fa fa-heart wishlist"></i></button> --}}
+                        @guest
+                            <a href="{{ route('login') }}" class="text-decoration-none float-end"><i class="fa fa-heart"></i></a>
+                        @endguest
+                        @auth
+                            <button class="float-end bg-transparent border-0 asdf_wishlist" id="{{ Auth::id() }}_{{ $product->id }}"><i class="fa fa-heart wislist_heart_{{ $product->id }}"></i></button>
+                        @endauth
+                        {{-- <i class="fa fa-heart wislist_heart_{{ $product->id }}"></i> --}}
                     </div>
                 </div>
             </div>
@@ -161,48 +171,6 @@
     @endif
     @endforeach 
     @endif
-    <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $(document).ready(function() {
-			$('.asdf_wishlist').click(function(e) {
-                e.preventDefault();
-                var el = this;
-				var id = this.id;
-				var splitid = id.split("_");
-
-				// Add id
-				var user_id = splitid[0];
-				var product_id = splitid[1];
-				// AJAX Request
-				$.ajax({
-                    url:'/wishlist',
-					type: 'POST',
-					data:{
-                        user_id:user_id, 
-                        product_id:product_id
-                    },
-					success: function(response) {
-						if (response === '1') {
-							// var count = $("#table_cart tr").length;
-							// if (count < 3) {
-								// $('.wishlist').addClass('text-danger')
-							}
-							// $('.cross_' + uid + '_' + oid).fadeOut('slow', function(c) {
-							// 	$('.cross_' + uid + '_' + oid).remove();
-							// });
-						// } 
-                        else {
-							alert('something went wrong');
-						}
-					}
-				});
-			});
-			});
-	</script>
 
     <div class="container-fluid p-0 mt-4">
         <img src="{{ asset('assets/images/covid-strip.webp') }}" style="object-fit:fill;" alt="delivery" class="img-fluid">

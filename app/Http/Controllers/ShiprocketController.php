@@ -24,6 +24,11 @@ class ShiprocketController extends Controller
         $weight = $_POST['weight'];
         
         $order_item = Order_item::where('id',$id)->first();
+
+        $split = explode('/', $order_item->items->cat->cat_title);
+
+        $sku = $split[0];
+
         $orderDetails = [
             "order_id"=> $id,
             "order_date"=> $order_item->created_at,
@@ -52,7 +57,7 @@ class ShiprocketController extends Controller
             "order_items"=> [
                 
                 ["name"=> $order_item->items->title,
-                "sku"=> $order_item->items->cat->cat_title,
+                "sku"=> $sku,
                 "units"=> $order_item->qty,
                 "selling_price"=> $order_item->items->discount_price,
                 "discount"=> "",
@@ -75,8 +80,12 @@ class ShiprocketController extends Controller
         $token =  Shiprocket::getToken();
         $response =  Shiprocket::order($token)->create($orderDetails);
         
+        // print_r($response);
+        // die;
         $shipment_id =  $response['shipment_id'];
         $order_id =  $response['order_id'];
+
+        
 
         Order_item::where('id',$id)->update([
             'shipment_id' => $shipment_id,

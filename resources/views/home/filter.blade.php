@@ -14,15 +14,33 @@
         </div>
         <div class="row row-cols-1 row-cols-lg-4 row-cols-md-3">
             @foreach ($products as $product)
-                <div class="col">
-                    <div class="card border-0 round-15 product-card mx-auto mat-shadow-sm post-item" >
-                        <img src="{{ asset('product/'.$product->cover_image) }}" style="height: 266px; object-fit:fill; object-position:center;" alt="" class="img-fluid card-img-top round-lt-rt-15">
-                        <div class="card-body">
-                            <a href="{{ route('home.product',['name'=>$product->slug]) }}" class="stretched-link text-decoration-none text-dark" title="{{ $product->title }}"><h6 class="text-truncate">{{ $product->title }}</h6></a>
-                                <p class="h6 text-theme mt-2">₹. {{ $product->discount_price }}/- <del class="ms-2 text-muted small">₹. {{ $product->price }}/-</del></p>
+            <div class="col">
+                <div class="card border-0 mat-shadow-sm product-card mx-auto round-10">
+                    <a href="{{ route('home.product',['name'=>$product->slug]) }}" title="{{ $product->title }}" class="stretched">
+                        <div class="card-body p-0">
+                            <img src="{{ asset('product/'.$product->cover_image) }}" style="height: 233px;" class="img-fluid round-lt-rt card-img-top" alt="">
                         </div>
+                    </a>
+                    <div class="card-footer border-0 bg-transparent">
+                        <a href="{{ route('home.product',['name'=>$product->slug]) }}" title="{{ $product->title }}" class="stretched"><p>{{ $product->title }}</p></a>
+                        <h6 class="text-theme">Rs. {{ $product->discount_price }}<span class="text-dark small float-end"><del>Rs. {{ $product->price }}</del></span></h6>
+                        <span>
+                            <i class="fa fa-star text-warning"></i>
+                            <i class="fa fa-star text-warning"></i>
+                            <i class="fa fa-star text-warning"></i>
+                            <i class="fa fa-star text-warning"></i>
+                            <i class="fa fa-star text-warning"></i>
+                        </span>
+                        @guest
+                            <a href="{{ route('login') }}" class="text-decoration-none float-end"><i class="fa fa-heart"></i></a>
+                        @endguest
+                        @auth
+                            <button class="float-end bg-transparent border-0 asdf_wishlist" id="{{ Auth::id() }}_{{ $product->id }}"><i class="fa fa-heart wislist_heart_{{ $product->id }}"></i></button>
+                        @endauth
+                        {{-- <i class="fa fa-heart wislist_heart_{{ $product->id }}"></i> --}}
                     </div>
                 </div>
+            </div>
             @endforeach
         </div>
     </div>

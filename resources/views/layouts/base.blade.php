@@ -20,12 +20,27 @@
     <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/sidebar.css') }}">
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="crossorigin="anonymous"></script>
-    {{-- <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script> --}}
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="crossorigin="anonymous"></script> --}}
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 
     @yield('css')
+    <script>
+        var lastScrollTop = 0, px = 0, scrollDownBool = false;
+        $(window).scroll(function(event){
+        var st = $(this).scrollTop();
+        if (st > lastScrollTop){
+            px += Math.abs(st - lastScrollTop);
+            if (px >= 70) {px = 70;}
+            document.querySelector(".menu").style.top = st-px+"px";
+        } else {
+            px -= Math.abs(st - lastScrollTop);
+            if (px <= 0) {px = 0;}
+            document.querySelector(".menu").style.top = st-px+"px"; 
+        }
+        lastScrollTop = st;
+        });
+    </script>
 </head>
 <body>
     <style>
@@ -196,7 +211,112 @@
           });
         
       </script>
-      
+      @auth
+        <script>
+            $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                
+                // function getWishlistData(){
+                $(document).ready(function(getData) {
+                $.ajax({
+                    url: "/wishlist_view",
+                    type: "POST",
+                    // data:{ 
+                    //     user_id:user_id, product_id:product_id
+                    // },
+                    cache: false,
+                    dataType: 'json',
+                    success: function(dataResult){
+                        console.log(dataResult);
+                        var resultData = dataResult.data;
+                        var resultData1 = dataResult.status;
+                        // var i=1;
+                        // console.log(resultData.product_id);
+                        if(resultData1 == 1){
+                        $.each(resultData,function(index,row){
+                            $('.wislist_heart_'+row.product_id).addClass('text-danger')
+                        });
+                        }
+                        // $("#bodyData").append(bodyData);
+                    }
+                });
+            });
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $(document).ready(function() {
+                $('.asdf_wishlist').click(function(e) {
+                    e.preventDefault();
+                    var el = this;
+                    var id = this.id;
+                    var splitid = id.split("_");
+
+                    // Add id
+                    var user_id = splitid[0];
+                    var product_id = splitid[1];
+                    // AJAX Request
+                    $.ajax({
+                        url:'/wishlist',
+                        type: 'POST',
+                        data:{
+                            user_id:user_id, 
+                            product_id:product_id
+                        },
+                        success: function(response) {
+                            console.log(response);
+                            if (response === '1') {
+                                $.ajax({
+                                    url: "/wishlist_view",
+                                    type: "POST",
+                                    // data:{ 
+                                    //     user_id:user_id, product_id:product_id
+                                    // },
+                                    cache: false,
+                                    dataType: 'json',
+                                    success: function(dataResult){
+                                        console.log(dataResult);
+                                        var resultData = dataResult.data;
+                                        var resultData1 = dataResult.status;
+                                        // var i=1;
+                                        // console.log(resultData.product_id);
+                                        if(resultData1 == 1){
+                                        $.each(resultData,function(index,row){
+                                            $('.wislist_heart_'+row.product_id).removeClass('text-dark')
+                                            $('.wislist_heart_'+row.product_id).addClass('text-danger')
+                                        });
+                                        }
+                                    }
+                                });
+                            }
+                            else if(response == 0) {
+                                var heart = $('.wishlist_heart_'+product_id);
+                                $.ajax({
+                                    url:'/wishlist_remove',
+                                    type: 'POST',
+                                    data:{
+                                        product_id:product_id
+                                    },
+                                    success: function(response) {
+                                        // heart.fadeOut("slow");
+                                        $('.wislist_heart_'+product_id).addClass('text-dark')
+                                        $('.wislist_heart_'+product_id).removeClass('text-danger')
+                                    }
+                                    // $(this).parents(".wislist_heart_'+product_id").animate({ backgroundColor: "#fbc7c7" }, "fast")
+                                });
+                            }
+                        }
+                    });
+                });
+            });
+        </script>
+                
+      @endauth
       <script>
         // Mobile Sidebar by ALok
         $(document).ready(function () {
@@ -217,22 +337,7 @@
               });
           });
     </script>
-      <script>
-        var lastScrollTop = 0, px = 0, scrollDownBool = false;
-        $(window).scroll(function(event){
-        var st = $(this).scrollTop();
-        if (st > lastScrollTop){
-            px += Math.abs(st - lastScrollTop);
-            if (px >= 70) {px = 70;}
-            document.querySelector(".menu").style.top = st-px+"px";
-        } else {
-            px -= Math.abs(st - lastScrollTop);
-            if (px <= 0) {px = 0;}
-            document.querySelector(".menu").style.top = st-px+"px"; 
-        }
-        lastScrollTop = st;
-        });
-    </script>
+
     <script src="assets/js/slider.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 

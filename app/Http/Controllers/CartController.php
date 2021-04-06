@@ -11,6 +11,7 @@ use App\Models\Order_item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Auth;
+use Alert;
 use Session;
 
 class CartController extends Controller
@@ -77,6 +78,27 @@ class CartController extends Controller
     public function coupon(Request $req, $id = null){
         $order_id = $req->order_id;
         $coupon = $req->code;
+        $total_amount = $req->total_amount;
+
+        // add coupon
+        $check = Coupon::where([['code',$coupon],['status',1]])->get();
+        if($check[0]->min_amount <= $total_amount){
+            if(count($check) > 0){
+                $query = Order::where('id',$order_id)->update([
+                    'coupon' => $check[0]->id,
+                ]);
+                
+                Alert::toast('Coupon Successfully Applied', 'success');
+                return redirect()->back();
+            }else{
+                Alert::toast('Coupon is not valid', 'error');
+                return redirect()->back();
+            }
+        }else{
+            Alert::toast('Coupon is not valid for this product', 'warning');
+            return redirect()->back();
+        }
+        
 
         // remove coupon
         // if($id!= null){
@@ -88,19 +110,6 @@ class CartController extends Controller
         // else{
         //     echo "<script>alert('Something Went Wrong')</script>";
         // }
-
-        // add coupon
-        $check = Coupon::where([['code',$coupon],['status',1]])->get();
-        if(count($check) > 0){
-            $query = Order::where('id',$order_id)->update([
-                'coupon' => $check[0]->id,
-                ]);
-            
-            return redirect()->back();
-        }else{
-            echo "<script>alert('coupon code not valid')</script>";
-                return redirect()->back();
-        }
         
     }
 

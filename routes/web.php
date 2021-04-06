@@ -57,7 +57,8 @@ Route::post('/coupon', [CartController::class,"coupon"])->name('coupon');
 Route::get('/coupon/{id}',[CartController::class,"coupon"])->name('coupon.remove');
 
 Route::post('/wishlist', [WishlistController::class,"add"])->name('wishlist');
-Route::get('/wishlist/{user_id}/{product}', [WishlistController::class,"wishlist"])->name('view.wishlist');
+Route::post('/wishlist_view', [WishlistController::class,"wishlist"])->name('view.wishlist');
+Route::post('/wishlist_remove', [WishlistController::class,"remove_wishlist"])->name('remove.wishlist');
 
 // for users
 

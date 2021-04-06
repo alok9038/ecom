@@ -1,6 +1,6 @@
 @extends('layouts.base')
 <style>
-    /* progress bar */
+  /* progress bar */
 #progressbar {
   margin-bottom: 30px;
   overflow: hidden;
@@ -63,12 +63,12 @@
 }
 
 #progressbar li:nth-child(2):after {
-  left: 50%!important
+  left: 50%
 }
 
 #progressbar li:nth-child(1):after {
-  left: 25%!important;
-  width: 121%!important
+  left: 25%;
+  width: 121%
 }
 
 #progressbar li:nth-child(3):after {
@@ -78,9 +78,11 @@
 
 #progressbar li.active:before,
 #progressbar li.active:after {
-  background: #ff1744!important;
+  background: #ff1744;
 }
 </style>
+
+
 @section('content')
     <div class="container my-5 mb-3">
         <div class="col-lg-12 p-4 bg-white mat-shadow-sm">
