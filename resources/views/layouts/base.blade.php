@@ -22,6 +22,7 @@
 
     {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="crossorigin="anonymous"></script> --}}
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
 
     @yield('css')
@@ -48,6 +49,34 @@
             .main-nav{
                 z-index: 3!important;
             }
+        }
+        @keyframes myanimation {
+        0%   {
+            -webkit-transform: scale(1);
+            -moz-transform: scale(1);
+            -o-transform: scale(1);
+            -ms-transform: scale(1);
+            transform: scale(1)
+        }
+        50%  {
+            -webkit-transform: scale(2);
+            -moz-transform: scale(2);
+            -o-transform: scale(2);
+            -ms-transform: scale(2);
+            transform: scale(1.5)
+        }
+        100%  {
+            -webkit-transform: scale(1);
+            -moz-transform: scale(1);
+            -o-transform: scale(1);
+            -ms-transform: scale(1);
+            transform: scale(1)
+        }
+        }
+        .heart-animate {
+            animation-name: myanimation;
+            animation-duration: 3s;
+            animation-iteration-count: 1;
         }
     </style>
     @include('sweetalert::alert')
@@ -237,7 +266,8 @@
                         // console.log(resultData.product_id);
                         if(resultData1 == 1){
                         $.each(resultData,function(index,row){
-                            $('.wislist_heart_'+row.product_id).addClass('text-danger')
+                            $('.wislist_heart_'+row.product_id).addClass('text-danger fa-heart')
+                            $('.wislist_heart_'+row.product_id).removeClass('fa-heart-o')
                         });
                         }
                         // $("#bodyData").append(bodyData);
@@ -287,8 +317,8 @@
                                         // console.log(resultData.product_id);
                                         if(resultData1 == 1){
                                         $.each(resultData,function(index,row){
-                                            $('.wislist_heart_'+row.product_id).removeClass('text-dark')
-                                            $('.wislist_heart_'+row.product_id).addClass('text-danger')
+                                            $('.wislist_heart_'+row.product_id).removeClass('text-dark fa-heart-o')
+                                            $('.wislist_heart_'+row.product_id).addClass('text-danger fa-heart')
                                         });
                                         }
                                     }
@@ -304,8 +334,8 @@
                                     },
                                     success: function(response) {
                                         // heart.fadeOut("slow");
-                                        $('.wislist_heart_'+product_id).addClass('text-dark')
-                                        $('.wislist_heart_'+product_id).removeClass('text-danger')
+                                        $('.wislist_heart_'+product_id).addClass('text-dark fa-heart-o')
+                                        $('.wislist_heart_'+product_id).removeClass('text-danger fa-heart')
                                     }
                                     // $(this).parents(".wislist_heart_'+product_id").animate({ backgroundColor: "#fbc7c7" }, "fast")
                                 });

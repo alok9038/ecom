@@ -102,8 +102,41 @@
                                     <a href="{{ route('login') }}" class="text-decoration-none float-end"><i class="fa fa-heart"></i></a>
                                 @endguest
                                 @auth
-                                    <button class="float-end bg-transparent border-0 asdf_wishlist" id="{{ Auth::id() }}_{{ $product->id }}"><i class="fa fa-heart wislist_heart_{{ $product->id }}"></i></button>
+                                    <button class="float-end bg-transparent border-0 asdf_wishlist" id="{{ Auth::id() }}_{{ $product->id }}"><i class="fa fa-heart-o wislist_heart_{{ $product->id }}"></i> </button>
                                 @endauth
+                                <style>
+                                    .HeartAnimation {
+                                        padding-top: 2em;
+                                        background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/66955/web_heart_animation.png');
+                                        background-repeat: no-repeat;
+                                        background-size: 2900%;
+                                        background-position: left;
+                                        height: 50px;
+                                        width: 50px;
+                                        margin: 0 auto;
+                                        cursor: pointer;
+                                        }
+                                        .animate {
+                                        animation: heart-burst .8s steps(28) forwards;
+                                        }
+
+                                        @keyframes heart-burst {
+                                            0% {
+                                                background-position: left
+                                            }
+                                            100% {
+                                                background-position: right
+                                            }
+                                        }
+                                </style>
+                                {{-- <div class="HeartAnimation"></div> --}}
+                                <script>
+                                    $(function() {
+                                        $(".HeartAnimation").click(function() {
+                                            $(this).toggleClass("animate");
+                                        });
+                                        });
+                                </script>
                             </div>
                         </div>
                     </div>  
@@ -156,10 +189,10 @@
                             <i class="fa fa-star text-warning"></i>
                         </span>
                         @guest
-                            <a href="{{ route('login') }}" class="text-decoration-none float-end"><i class="fa fa-heart"></i></a>
+                            <a href="{{ route('login') }}" class="text-decoration-none float-end"><i class="fa fa-heart-o"></i></a>
                         @endguest
                         @auth
-                            <button class="float-end bg-transparent border-0 asdf_wishlist" id="{{ Auth::id() }}_{{ $product->id }}"><i class="fa fa-heart wislist_heart_{{ $product->id }}"></i></button>
+                            <button class="float-end bg-transparent border-0 asdf_wishlist" id="{{ Auth::id() }}_{{ $product->id }}"><i class="fa fa-heart-o wislist_heart_{{ $product->id }}"></i></button>
                         @endauth
                         {{-- <i class="fa fa-heart wislist_heart_{{ $product->id }}"></i> --}}
                     </div>
@@ -171,7 +204,6 @@
     @endif
     @endforeach 
     @endif
-
     <div class="container-fluid p-0 mt-4">
         <img src="{{ asset('assets/images/covid-strip.webp') }}" style="object-fit:fill;" alt="delivery" class="img-fluid">
     </div>
