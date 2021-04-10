@@ -56,7 +56,7 @@
                         $category = category()
                     @endphp      
                     @foreach ($category as $cat)
-                    <div class="slide py-2 category-slider" style="height: auto; outline:none;">
+                    <div class="slide py-2 category-slider" style="height: auto; outline:none!important;">
                         <div class="card bg-transparent border-0">
                             <div class="card-body cat rounded-circle d-flex justify-content-center mat-shadow-sm category-card" style="background-color: {{ $cat->color }}; padding:2px;">
                                 <img src="{{ asset('category/'.$cat->image) }}" class="category-img card-img-top img-fluid">
@@ -81,7 +81,7 @@
                 @foreach ($products as $product)
                     <div class="slide py-2 mx-2" style="height: auto; outline:none!important;">
                         <div class="card mx-auto border-0 mx-auto mat-shadow-sm round-10" style="width: 90%;">
-                            <a href="{{ route('home.product',['name'=>$product->slug]) }}" title="{{ $product->title }}" class="stretched">
+                            <a href="{{ route('home.product',['name'=>$product->slug]) }}" title="{{ $product->title }}" class="" style="outline:none!important;">
                                 <div class="card-body p-0">
                                     <img src="{{ asset('product/'.$product->cover_image) }}" style="height: 233px;" class="img-fluid round-lt-rt card-img-top" alt="">
                                 </div>
@@ -91,20 +91,28 @@
                                     <p class="text-truncate">{{ $product->title }}</p>
                                 </a>
                                 <h6 class="text-theme">₹. {{ $product->discount_price }}/- <span class="text-dark small float-end"><del>₹. {{ $product->price }}/-</del></span></h6>
-                                <span>
-                                    <i class="fa fa-star text-warning"></i>
-                                    <i class="fa fa-star text-warning"></i>
-                                    <i class="fa fa-star text-warning"></i>
-                                    <i class="fa fa-star text-warning"></i>
-                                    <i class="fa fa-star text-warning"></i>
+                                @php
+                                    $ratings = rating($product->id);
+                                    $count = count(rating($product->id));
+                                    $total_rating = 0
+                                @endphp
+                                @if ($count > 0)
+                                    @foreach ($ratings as $rating)
+                                    @php
+                                        $total_rating += $rating->ratings
+                                    @endphp
+                                @endforeach
+                                <span class="badge bg-success">
+                                    {{ $avg_rating = $total_rating/$count }} <i class="fa fa-star" style="font-size: 10px;"> </i>
                                 </span>
+                                @endif
                                 @guest
-                                    <a href="{{ route('login') }}" class="text-decoration-none float-end"><i class="fa fa-heart"></i></a>
+                                    <a href="{{ route('login') }}" class="text-decoration-none float-end"><i class="fa fa-heart-o"></i></a>
                                 @endguest
                                 @auth
                                     <button class="float-end bg-transparent border-0 asdf_wishlist" id="{{ Auth::id() }}_{{ $product->id }}"><i class="fa fa-heart-o wislist_heart_{{ $product->id }}"></i> </button>
                                 @endauth
-                                <style>
+                                {{-- <style>
                                     .HeartAnimation {
                                         padding-top: 2em;
                                         background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/66955/web_heart_animation.png');
@@ -128,15 +136,15 @@
                                                 background-position: right
                                             }
                                         }
-                                </style>
+                                </style> --}}
                                 {{-- <div class="HeartAnimation"></div> --}}
-                                <script>
+                                {{-- <script>
                                     $(function() {
                                         $(".HeartAnimation").click(function() {
                                             $(this).toggleClass("animate");
                                         });
                                         });
-                                </script>
+                                </script> --}}
                             </div>
                         </div>
                     </div>  
@@ -181,13 +189,21 @@
                     <div class="card-footer border-0 bg-transparent">
                         <a href="{{ route('home.product',['name'=>$product->slug]) }}" title="{{ $product->title }}" class="stretched"><p>{{ $product->title }}</p></a>
                         <h6 class="text-theme">Rs. {{ $product->discount_price }}<span class="text-dark small float-end"><del>Rs. {{ $product->price }}</del></span></h6>
-                        <span>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
+                        @php
+                            $ratings = rating($product->id);
+                            $count = count(rating($product->id));
+                            $total_rating = 0
+                        @endphp
+                        @if ($count > 0)
+                            @foreach ($ratings as $rating)
+                            @php
+                                $total_rating += $rating->ratings
+                            @endphp
+                        @endforeach
+                        <span class="badge bg-success">
+                            {{ $avg_rating = $total_rating/$count }} <i class="fa fa-star" style="font-size: 10px;"> </i>
                         </span>
+                        @endif
                         @guest
                             <a href="{{ route('login') }}" class="text-decoration-none float-end"><i class="fa fa-heart-o"></i></a>
                         @endguest

@@ -6,10 +6,12 @@ use App\Models\Category;
 use App\Models\Order_item;
 use Auth;
 use App\Models\user;
+use App\Models\Rating;
 use View;
 use Alert;
 use Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class HomeController extends Controller
 {
@@ -17,6 +19,7 @@ class HomeController extends Controller
     
     
     public function index(){
+        // $data[ratings] = 
         $data['items'] = Order_item::where([['user_id',Auth::id()],['ordered',false]])->get();
         $data['products']= Product::orderBy('id','desc')->get();
         return view('home.index',$data);

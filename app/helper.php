@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Models\Order_item;
 use App\Models\Category;
 use App\Models\SiteSetting;
+use App\Models\Rating;
 // Use Session;
 
 if(!function_exists('user')){
@@ -35,5 +36,20 @@ if(!function_exists('site')){
         return $site;
     }
 }
+if(!function_exists('rating')){
+    function rating($pro_id){
+        $rating = Rating::where('product_id',$pro_id)->get();
+        return $rating;
+    }
+}
+if(!function_exists('count_ratings')){
+    function count_ratings($cond){
+        // $rating = Rating::where($cond)->toSql();
+        $ratings = Rating::where($cond)->orderBy('id','desc')->get();
+        // return print_r($rating);
+        return $ratings;
+    }
+}
+
 
 ?>

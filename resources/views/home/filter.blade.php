@@ -24,18 +24,26 @@
                     <div class="card-footer border-0 bg-transparent">
                         <a href="{{ route('home.product',['name'=>$product->slug]) }}" title="{{ $product->title }}" class="stretched"><p>{{ $product->title }}</p></a>
                         <h6 class="text-theme">Rs. {{ $product->discount_price }}<span class="text-dark small float-end"><del>Rs. {{ $product->price }}</del></span></h6>
-                        <span>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-star text-warning"></i>
+                        @php
+                            $ratings = rating($product->id);
+                            $count = count(rating($product->id));
+                            $total_rating = 0
+                        @endphp
+                        @if ($count > 0)
+                            @foreach ($ratings as $rating)
+                            @php
+                                $total_rating += $rating->ratings
+                            @endphp
+                        @endforeach
+                        <span class="badge bg-success">
+                            {{ $avg_rating = $total_rating/$count }} <i class="fa fa-star"> </i>
                         </span>
+                        @endif
                         @guest
-                            <a href="{{ route('login') }}" class="text-decoration-none float-end"><i class="fa fa-heart"></i></a>
+                            <a href="{{ route('login') }}" class="text-decoration-none float-end"><i class="fa fa-heart-o"></i></a>
                         @endguest
                         @auth
-                            <button class="float-end bg-transparent border-0 asdf_wishlist" id="{{ Auth::id() }}_{{ $product->id }}"><i class="fa fa-heart wislist_heart_{{ $product->id }}"></i></button>
+                            <button class="float-end bg-transparent border-0 asdf_wishlist" id="{{ Auth::id() }}_{{ $product->id }}"><i class="fa fa-heart-o wislist_heart_{{ $product->id }}"></i></button>
                         @endauth
                         {{-- <i class="fa fa-heart wislist_heart_{{ $product->id }}"></i> --}}
                     </div>

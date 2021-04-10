@@ -1,4 +1,6 @@
-
+*{
+  outline: none!important;
+}
   .side-toggle{
     position: fixed;
     right: 15px!important;

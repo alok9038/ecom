@@ -15,6 +15,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ShiprocketController;
 use App\Http\Controllers\PaytmController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\RatingController;
 
 // for homepage //
 Route::get('/redirect', [RedirectController::class,"redirect"])->name('redirect');
@@ -26,6 +27,10 @@ Route::get('/token', [ShipController::class,"generate_token"]);
 
 Route::get('/', [HomeController::class,"index"])->name('homepage');
 Route::get('/product/{name}', [HomeController::class,"product"])->name('home.product');
+
+Route::get('/{slug}/write-review/{id}', [RatingController::class,"review"])->name('home.review');
+Route::post('/write-review-rating', [RatingController::class,"review_rating"])->name('home.rating.insert');
+Route::post('/write-review-rating-update', [RatingController::class,"review_rating_update"])->name('home.rating.update');
 
 // product filter
 //Route::get('/{name}', [HomeController::class,"cat_filter"])->name('cat_filter');
