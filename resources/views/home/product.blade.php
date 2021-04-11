@@ -11,7 +11,7 @@
             <nav class="" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
                 <ol class="breadcrumb bg-white py-3 ps-3 rounded-0 shadow-sm">
                   <li class="breadcrumb-item small"><a href="{{ route('homepage') }}" class="text-muted text-decoration-none">Home</a></li>
-                  <li class="breadcrumb-item small" aria-current="page"><a href="" class="text-decoration-none text-muted">Category</a></li>
+                  <li class="breadcrumb-item small" aria-current="page"><a href="" class="text-decoration-none text-muted">{{ $product->cat->cat_title }}</a></li>
                   <li class="breadcrumb-item active small" aria-current="page">{{ $product->title }}</li>
                 </ol>
             </nav>
@@ -44,7 +44,7 @@
             </div>    
             <div class="col-lg-5 px-3">
                 <h1 class="h4">{{ $product->title }}</h1> 
-                <p class="small">{{ $product->cat_id }}</p> 
+                <p class="small">{{ $product->cat->cat_title }}</p> 
                 @php
                     $ratings = rating($product->id);
                     $count = count(rating($product->id));
@@ -56,10 +56,12 @@
                         $total_rating += $rating->ratings
                     @endphp
                 @endforeach
+                @if($count != 0)
                 <span class="badge bg-success">
-                        {{ $avg_rating = $total_rating/$count }} <i class="fa fa-star" style="font-size: 10px;"> </i>
-                    </span>
-                    <span class="small text-muted">{{ $count }} ratings</span>
+                    {{ $avg_rating = $total_rating/$count }} <i class="fa fa-star" style="font-size: 10px;"> </i>
+                </span>
+                <span class="small text-muted">{{ $count }} ratings</span>
+                @endif
                 @endif
                 <p class="h5 text-danger mt-2">₹. {{ $product->discount_price }}/- <del class="ms-2 text-muted small">₹. {{ $product->price }}/-</del></p>
                 <span class="badge bg-theme rounded-0 py-2 mt-2">
@@ -140,6 +142,7 @@
                 @endphp
                 <a href="{{ route('home.review',['slug'=>$product->slug , 'id'=>$id]) }}" class="btn btn-white ms-auto border rounded-0 shadow-sm ">Rate Product</a>
             </div>
+            @if($count != 0)
             <div class="card-body">
                 <div class="container-fluid">
                     <style>
@@ -367,10 +370,14 @@
                         <div class="col-lg-5 d-flex">
                             <div class="row">
                                 <div class="col mb-3 d-lg-block d-flex justify-content-center col-lg-3 col-md-3 col-sm-3">
-                                    @php
-                                        $avg_rating =  $total_rating/$count
-                                    @endphp
+                                        @if ($count != 0) 
+                                            @php
+                                                $avg_rating =  $total_rating/$count
+                                            @endphp
+                                        @endif
+                                  
                                     <div class="progress-circle me-4 over50  
+                                        @if($count != 0)
                                         @if($avg_rating == 1) p20
                                         @elseif($avg_rating == 1.1) p22
                                         @elseif($avg_rating == 1.2) p24
@@ -413,8 +420,9 @@
                                         @elseif($avg_rating == 4.9) p98
                                         @elseif($avg_rating == 5) p100
                                         @endif 
+                                        @endif
                                     ">
-                                        <span class="text-theme">{{ $avg_rating }} <i class="fa fa-star" style="font-size: 15px;"> </i></span>
+                                        <span class="text-theme">@if($count != 0){{ $avg_rating }}@endif <i class="fa fa-star" style="font-size: 15px;"> </i></span>
                                         <div class="left-half-clipper ">
                                            <div class="first50-bar"></div>
                                            <div class="value-bar"></div>
@@ -637,11 +645,14 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>                
+            @else
+               <h4 class="text-center h5 mb-4">No rating and reviews yet!</h4> 
+            @endif
         </div>
     </div>
     <div class="container-fluid px-3 my-5 ">
-        <div class="head p-0 m-0" style="border-bottom: 4px solid #e4163f;">
+        <div class="head p-0 m-0" style="border-bottom: 4px solid #ee4054;">
             <div class="d-inline-flex px-4 py-1 pb-2 text-white bg-theme">Similar Products</div>
             <a href="" class="text-muted text-decoration-none float-end">view all</a>
         </div>
